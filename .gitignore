@@ -1,0 +1,16 @@
+*~
+*.cfg
+*.iml
+target/
+graalvm/
+.settings/
+./.project
+.factorypath
+.classpath
+.idea/
+.project
+/bin/
+
+component/hashemi-component.jar
+language/dependency-reduced-pom.xml
+native/hashemi
