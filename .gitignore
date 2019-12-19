@@ -1,6 +1,7 @@
 *~
 *.cfg
 *.iml
+*/target/
 target/
 graalvm/
 .settings/
