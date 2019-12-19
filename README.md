@@ -1,6 +1,6 @@
 # Mr. Hashemi Language
 
-Other languages are too difficult. Ask Mr. Hashemi to do the job right for you!
+Other languages are just too difficult. Ask Mr. Hashemi to do the job right for you!
 
 ![alt text](hashemi-logo.jpg) 
 
