@@ -40,7 +40,7 @@ bebin derakht(n){
 ## Basic syntax:  
 ### Functions:  
 - Declare a function by keyword `bebin` before function name.  
-- Program starts from main method.  
+- Program starts from main function.  
 - to call a function simply call it.  
 in example above the functions `main` and `derakht` are defined and function `derakht` is called inside main.
 
