@@ -47,7 +47,7 @@ in example above the methods `main` and `derakht` are defined and method `derakh
 ### Loops:  
 The usual `while (condition) {code}` loop is defined as `ta (shart) bood {code}` .  
 ### condition:  
-The usual `if (condition) {code}` loop is defined as `age (shart) {code}` .  
+The usual `if (condition) {code}` conditions definition is defined as `age (shart) bood {code}` .  
 ### Variable declaration:  
 - String :
 	- matn = "ghoori ze ghalam, ghalam ze ghoori";
@@ -60,4 +60,3 @@ The usual `if (condition) {code}` loop is defined as `age (shart) {code}` .
 	- object.age = 33;
 ### logical operators:
 Basically like java you can find the list [here](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/opsummary.html) .
-
