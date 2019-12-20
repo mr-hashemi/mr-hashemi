@@ -1,9 +1,8 @@
 name: Release Mr. Hashemi
 
-on: 
-  push:
-    branches: 
-      - master
+on:
+  release:
+    types: [created]
 
 jobs:
   build:
