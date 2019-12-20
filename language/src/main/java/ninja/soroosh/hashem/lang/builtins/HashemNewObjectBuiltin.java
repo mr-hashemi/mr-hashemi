@@ -34,7 +34,7 @@ public abstract class HashemNewObjectBuiltin extends HashemBuiltinNode {
             return values.instantiate(obj);
         } catch (UnsupportedTypeException | ArityException | UnsupportedMessageException e) {
             /* Foreign access was not successful. */
-            throw HashemUndefinedNameException.undefinedFunction(this, obj);
+            throw HashemUndefinedNameException.undefinedBebin(this, obj);
         }
     }
 }

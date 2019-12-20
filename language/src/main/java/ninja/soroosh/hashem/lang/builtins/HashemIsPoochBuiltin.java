@@ -9,8 +9,8 @@ import com.oracle.truffle.api.nodes.NodeInfo;
  * Built-in function that queries if the foreign object is a null value. See
  * <link>Messages.IS_NULL</link>.
  */
-@NodeInfo(shortName = "isNull")
-public abstract class HashemIsNullBuiltin extends HashemBuiltinNode {
+@NodeInfo(shortName = "isPooch")
+public abstract class HashemIsPoochBuiltin extends HashemBuiltinNode {
 
     @Specialization(limit = "3")
     public boolean isExecutable(Object obj, @CachedLibrary("obj") InteropLibrary values) {

@@ -7,8 +7,8 @@ import com.oracle.truffle.api.interop.TruffleObject;
 import com.oracle.truffle.api.nodes.NodeInfo;
 import ninja.soroosh.hashem.lang.HashemException;
 import ninja.soroosh.hashem.lang.nodes.HashemBinaryNode;
+import ninja.soroosh.hashem.lang.runtime.HashemBebin;
 import ninja.soroosh.hashem.lang.runtime.HashemBigNumber;
-import ninja.soroosh.hashem.lang.runtime.HashemFunction;
 import ninja.soroosh.hashem.lang.runtime.HashemPooch;
 
 /**
@@ -46,7 +46,7 @@ public abstract class HashemEqualNode extends HashemBinaryNode {
     }
 
     @Specialization
-    protected boolean equal(HashemFunction left, HashemFunction right) {
+    protected boolean equal(HashemBebin left, HashemBebin right) {
         /*
          * Our function registry maintains one canonical SLFunction object per function name, so we
          * do not need equals().

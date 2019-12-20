@@ -8,14 +8,14 @@ import com.oracle.truffle.api.nodes.UnexpectedResultException;
 import ninja.soroosh.hashem.lang.HashemException;
 import ninja.soroosh.hashem.lang.nodes.HashemExpressionNode;
 import ninja.soroosh.hashem.lang.runtime.HashemContext;
-import ninja.soroosh.hashem.lang.runtime.HashemFunctionRegistry;
+import ninja.soroosh.hashem.lang.runtime.HashemBebinRegistry;
 
 /**
  * Base class for all builtin functions. It contains the Truffle DSL annotation {@link NodeChild}
  * that defines the function arguments.<br>
  * The builtin functions are registered in {@link HashemContext#installBuiltins}. Every builtin node
  * subclass is instantiated there, wrapped into a function, and added to the
- * {@link HashemFunctionRegistry}. This ensures that builtin functions can be called like user-defined
+ * {@link HashemBebinRegistry}. This ensures that builtin functions can be called like user-defined
  * functions; there is no special function lookup or call node for builtin functions.
  */
 @NodeChild(value = "arguments", type = HashemExpressionNode[].class)
