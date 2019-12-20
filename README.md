@@ -42,7 +42,7 @@ bebin derakht(n){
 - Declare a method by keyword `bebin` before method name.  
 - Program starts from main method.  
 - to call a method simply call it.  
-in example above the methods `main` and `derakht` are defined and method `derakht` is called inside main.
+in example above the functions `main` and `derakht` are defined and function `derakht` is called inside main.
 
 ### Loops:  
 The usual `while (condition) {code}` loop is defined as `ta (shart) bood {code}` .  
