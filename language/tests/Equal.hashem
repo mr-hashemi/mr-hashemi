@@ -1,0 +1,13 @@
+bebin e(a, b) {
+  bede a == b;
+}
+
+bebin main() {
+  bechap(e(4, 4));
+  bechap(e(3, "aaa"));
+  bechap(e(4, 4));
+  bechap(e("a", "a"));
+  bechap(e(1==2, 1==2));
+  bechap(e(1==2, 1));
+  bechap(e(e, e));
+}  

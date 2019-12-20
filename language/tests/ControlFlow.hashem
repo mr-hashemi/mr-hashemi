@@ -1,0 +1,10 @@
+bebin foo() {}
+bebin bar() {}
+
+bebin main() {
+  foo();
+  age (1 < 2) bood{
+    bar();
+    bede 1;
+  }
+}  

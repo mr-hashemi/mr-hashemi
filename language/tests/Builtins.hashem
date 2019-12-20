@@ -1,0 +1,4 @@
+bebin main() {
+  bechap("Hello World!");
+  nanoTime();  
+}  

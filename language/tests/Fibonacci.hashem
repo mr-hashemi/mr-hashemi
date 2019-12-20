@@ -1,0 +1,21 @@
+bebin fib(num) {
+  age (num < 1) bood {bede 0;}
+  n1 = 0;
+  n2 = 1;
+  i = 1;
+  ta (i < num) bood {
+    next = n2 + n1;
+    n1 = n2;
+    n2 = next;
+    i = i + 1;
+  }
+  bede n2;
+}
+
+bebin main() {
+  i = 1;
+  ta (i <= 10) bood {
+    bechap(i + ": " + fib(i));
+    i = i + 1;
+  }
+}  

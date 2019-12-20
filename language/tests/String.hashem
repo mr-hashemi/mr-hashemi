@@ -1,0 +1,25 @@
+bebin pooch() {
+}
+
+bebin foo() {
+  bede "bar";
+}
+
+bebin f(a, b) {
+  bede a + " < " + b + ": " + (a < b);
+}
+
+bebin main() {
+  bechap("s" + pooch());
+  bechap("s" + pooch);
+  bechap("s" + foo());
+  bechap("s" + foo);
+    
+  bechap(pooch() + "s");
+  bechap(pooch() + "s");
+  bechap(foo() + "s");
+  bechap(foo + "s");
+
+  bechap(f(2, 4));
+  bechap(f(2, "4"));
+}  

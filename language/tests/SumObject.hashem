@@ -1,0 +1,19 @@
+bebin loop(n) {
+  obj = jadid();
+  obj.i = 0;  
+  obj.sum = 0;  
+  ta (obj.i <= n) bood {
+    obj.sum = obj.sum + obj.i;  
+    obj.i = obj.i + 1;  
+  }  
+  bede obj.sum;
+}  
+
+bebin main() {
+  i = 0;
+  ta (i < 20) bood {
+    loop(10000);
+    i = i + 1;
+  }
+  bechap(loop(10000));
+}  

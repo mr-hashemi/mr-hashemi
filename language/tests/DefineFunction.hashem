@@ -1,0 +1,11 @@
+bebin foo() {
+  bechap(test(40, 2));
+}
+
+bebin main() {
+  defineFunction("bebin test(a, b) { bede a + b; }");
+  foo();
+
+  defineFunction("bebin test(a, b) { bede a - b; }");
+  foo();
+}  

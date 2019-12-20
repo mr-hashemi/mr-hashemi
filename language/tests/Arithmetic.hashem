@@ -1,0 +1,12 @@
+bebin main() {
+  bechap(3 + 4 - 2);
+  bechap(3 - 4 + 2);
+  bechap(3 - 4 - 2);
+  bechap(3 * 4 + 2);
+  bechap(3 + 4 * 2);
+  bechap(3 + (4 - 2));
+  bechap(3 - (4 + 2));
+  bechap(3 - (4 - 2));
+  bechap(3 * (4 + 2));
+  bechap(3 + (4 * 2));
+}  

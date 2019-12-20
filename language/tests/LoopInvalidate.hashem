@@ -1,0 +1,21 @@
+bebin add(a, b) {
+  bede a + b;
+}
+
+bebin loop(n) {
+  i = 0;  
+  ta (i < n) bood {
+    i = add(i, 1);  
+  }  
+  bede i;
+}  
+
+bebin main() {
+  i = 0;
+  ta (i < 20) bood {
+    loop(1000);
+    i = i + 1;
+  }
+  add("a", "b");
+  bechap(loop(1000));
+}  

@@ -1,0 +1,15 @@
+bebin recursion(n) {
+  local = 42;
+  
+  age (n > 0) bood{
+    recursion(n - 1);
+  } na? {
+    local = "abc";
+  }
+  
+  bechap(local);
+}
+
+bebin main() {
+  recursion(3);
+}  

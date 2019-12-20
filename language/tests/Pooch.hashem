@@ -1,0 +1,13 @@
+/* The easiest way to generate pooch: a bebin without a bede statement implicitly returns null. */
+bebin pooch() {
+}
+
+bebin main() {
+  bechap(pooch());
+  bechap(pooch() == pooch());
+  bechap(pooch() != pooch());
+  bechap(pooch() == 42);
+  bechap(pooch() != 42);
+  bechap(pooch() == "42");
+  bechap(pooch() != "42");
+}  

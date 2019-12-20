@@ -1,0 +1,4 @@
+bebin main() {
+  eval("hashemi", "bebin foo() { bede 14 + 2; }");
+  bechap(foo());
+}

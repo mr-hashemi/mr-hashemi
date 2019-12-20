@@ -1,0 +1,16 @@
+bebin loop(n, obj, name) {
+  obj[name] = 0;  
+  ta (obj[name] < n) bood {
+    obj[name] = obj[name] + 1;  
+  }  
+  bede obj[name];
+}  
+
+bebin main() {
+  i = 0;
+  ta (i < 20) bood {
+    loop(1000, jadid(), "prop");
+    i = i + 1;
+  }
+  bechap(loop(1000, jadid(), "prop"));
+}  

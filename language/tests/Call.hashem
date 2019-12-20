@@ -1,0 +1,16 @@
+bebin ret(a) { bede a; }
+bebin dub(a) { bede a * 2; }
+bebin inc(a) { bede a + 1; }
+bebin dec(a) { bede a - 1; }
+bebin call(f, v) { bede f(v); }
+ 
+bebin main() {
+  bechap(ret(42));
+  bechap(dub(21));
+  bechap(inc(41));
+  bechap(dec(43));
+  bechap(call(ret, 42));
+  bechap(call(dub, 21));
+  bechap(call(inc, 41));
+  bechap(call(dec, 43));
+}  

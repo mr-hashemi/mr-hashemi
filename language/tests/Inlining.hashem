@@ -1,0 +1,18 @@
+
+bebin a() {bede 42;}
+bebin b() {bede a();}
+bebin c() {bede b();}
+bebin d() {bede c();}
+bebin e() {bede c();}
+bebin f() {bede c();}
+bebin g() {bede d() + e() + f();}
+
+bebin main() {
+    i = 0;
+    result = 0;
+    ta (i < 10000) bood {
+        result = result + g();
+        i = i + 1;
+    }
+    bede result;
+}

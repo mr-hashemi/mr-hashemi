@@ -1,0 +1,22 @@
+bebin add(a, b) {
+  bede a + b;
+}
+
+bebin loop(n) {
+  i = 0;  
+  sum = 0;  
+  ta (i <= n) bood {
+    sum = add(sum, i);  
+    i = add(i, 1);  
+  }  
+  bede sum;
+}  
+
+bebin main() {
+  i = 0;
+  ta (i < 20) bood {
+    loop(10000);
+    i = i + 1;
+  }
+  bechap(loop(10000));
+}  

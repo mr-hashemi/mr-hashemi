@@ -1,0 +1,42 @@
+bebin main() {
+  obj1 = jadid();
+  obj1.x = 42;
+  bechap(obj1.x);
+  
+  obj2 = jadid();
+  obj2.o = obj1;
+  bechap(obj2.o.x);
+  obj2.o.y = "why";
+  bechap(obj1.y);
+  
+  bechap(mkobj().z);
+  
+  obj3 = jadid();
+  obj3.fn = mkobj;
+  bechap(obj3.fn().z);
+
+  obj4 = jadid();
+  write(obj4, 1);
+  read(obj4);
+  write(obj4, 2);
+  read(obj4);
+  write(obj4, "three");
+  read(obj4);
+
+  obj5 = jadid();
+  bechap(obj5.x);
+}
+
+bebin mkobj() {
+  jadidobj = jadid();
+  jadidobj.z = "zzz";
+  bede jadidobj;
+}
+
+bebin read(obj) {
+  bede obj.prop;
+}
+
+bebin write(obj, value) {
+  bede obj.prop = value;
+}

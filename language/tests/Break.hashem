@@ -1,0 +1,10 @@
+bebin main() {
+  i = 0;  
+  ta (i < 1000) bood {
+    age (i >= 942) bood {
+      khob;
+    }  
+    i = i + 1;  
+  }
+  bede i;
+}  

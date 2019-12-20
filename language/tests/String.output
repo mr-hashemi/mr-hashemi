@@ -1,0 +1,10 @@
+sPOOCH
+spooch
+sbar
+sfoo
+POOCHs
+POOCHs
+bars
+foos
+2 < 4: true
+Type error at String.hashem line 9 col 32: operation "<" not defined for Number 2, String "4"

@@ -1,0 +1,9 @@
+bebin main() {
+  i = 0;  
+  sum = 0;  
+  ta (i <= 10000) bood {
+    sum = sum + i;  
+    i = i + 1;  
+  }  
+  bede sum;
+}  

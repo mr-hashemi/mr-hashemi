@@ -1,0 +1,23 @@
+bebin main() {
+  t = 10 == 10; // true
+  f = 10 != 10; // false
+  bechap(left(f) && right(f));
+  bechap(left(f) && right(t));
+  bechap(left(t) && right(f));
+  bechap(left(t) && right(t));
+  bechap("");
+  bechap(left(f) || right(f));
+  bechap(left(f) || right(t));
+  bechap(left(t) || right(f));
+  bechap(left(t) || right(t));
+}
+
+bebin left(x) {
+  bechap("left");
+  bede x;
+}
+
+bebin right(x) {
+  bechap("right");
+  bede x;
+}
