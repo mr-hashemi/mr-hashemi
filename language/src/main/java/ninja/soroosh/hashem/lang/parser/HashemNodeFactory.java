@@ -153,7 +153,7 @@ public class HashemNodeFactory {
     }
 
     private static boolean isHaltInCondition(HashemStatementNode statement) {
-        return (statement instanceof HashemAgeNode) || (statement instanceof HashemWhileNode);
+        return (statement instanceof HashemAgeNode) || (statement instanceof HashemTaNode);
     }
 
     private void flattenBlocks(Iterable<? extends HashemStatementNode> bodyNodes, List<HashemStatementNode> flattenedNodes) {
@@ -179,31 +179,31 @@ public class HashemNodeFactory {
     }
 
     /**
-     * Returns an {@link HashemBreakNode} for the given token.
+     * Returns an {@link HashemKhobNode} for the given token.
      *
      * @param breakToken The token containing the break node's info.
      * @return A SLBreakNode for the given token.
      */
     public HashemStatementNode createBreak(Token breakToken) {
-        final HashemBreakNode breakNode = new HashemBreakNode();
+        final HashemKhobNode breakNode = new HashemKhobNode();
         srcFromToken(breakNode, breakToken);
         return breakNode;
     }
 
     /**
-     * Returns an {@link HashemContinueNode} for the given token.
+     * Returns an {@link HashemBadiNode} for the given token.
      *
      * @param continueToken The token containing the continue node's info.
      * @return A SLContinueNode built using the given token.
      */
     public HashemStatementNode createContinue(Token continueToken) {
-        final HashemContinueNode continueNode = new HashemContinueNode();
+        final HashemBadiNode continueNode = new HashemBadiNode();
         srcFromToken(continueNode, continueToken);
         return continueNode;
     }
 
     /**
-     * Returns an {@link HashemWhileNode} for the given parameters.
+     * Returns an {@link HashemTaNode} for the given parameters.
      *
      * @param whileToken The token containing the while node's info
      * @param conditionNode The conditional node for this while loop
@@ -219,7 +219,7 @@ public class HashemNodeFactory {
         conditionNode.addStatementTag();
         final int start = whileToken.getStartIndex();
         final int end = bodyNode.getSourceEndIndex();
-        final HashemWhileNode whileNode = new HashemWhileNode(conditionNode, bodyNode);
+        final HashemTaNode whileNode = new HashemTaNode(conditionNode, bodyNode);
         whileNode.setSourceSection(start, end - start);
         return whileNode;
     }
