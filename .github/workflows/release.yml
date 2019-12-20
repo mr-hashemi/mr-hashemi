@@ -5,7 +5,25 @@ on:
     types: [created]
 
 jobs:
-  build:
+  release-windows:
+    runs-on: windows-latest
+    steps:
+    - uses: DeLaGuardo/setup-graalvm@2.0
+      with:
+        graalvm-version: '19.3.0.java8' 
+    - run: java -version
+    - run: gu install native-image
+    - uses: actions/checkout@v1
+    - name: Build with Maven
+      run: mvn package
+
+    - name: Upload the artifacts
+      uses: skx/github-action-publish-binaries@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        args: 'native/hashem*'
+  release-linux:
     runs-on: ubuntu-latest
     steps:
     - uses: DeLaGuardo/setup-graalvm@2.0
