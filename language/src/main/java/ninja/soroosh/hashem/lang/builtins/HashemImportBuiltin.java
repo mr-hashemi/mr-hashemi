@@ -10,7 +10,7 @@ import com.oracle.truffle.api.nodes.NodeInfo;
 import ninja.soroosh.hashem.lang.HashemException;
 import ninja.soroosh.hashem.lang.HashemLanguage;
 import ninja.soroosh.hashem.lang.runtime.HashemContext;
-import ninja.soroosh.hashem.lang.runtime.HashemNull;
+import ninja.soroosh.hashem.lang.runtime.HashemPooch;
 
 /**
  * Built-in function that goes through to import a symbol from the polyglot bindings.
@@ -25,7 +25,7 @@ public abstract class HashemImportBuiltin extends HashemBuiltinNode {
         try {
             return arrays.readMember(context.getPolyglotBindings(), symbol);
         } catch (UnsupportedMessageException | UnknownIdentifierException e) {
-            return HashemNull.SINGLETON;
+            return HashemPooch.SINGLETON;
         } catch (SecurityException e) {
             throw new HashemException("No polyglot access allowed.", this);
         }

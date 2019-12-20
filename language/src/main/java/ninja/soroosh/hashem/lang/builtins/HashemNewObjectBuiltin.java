@@ -12,7 +12,7 @@ import com.oracle.truffle.api.library.CachedLibrary;
 import com.oracle.truffle.api.nodes.NodeInfo;
 import ninja.soroosh.hashem.lang.HashemLanguage;
 import ninja.soroosh.hashem.lang.runtime.HashemContext;
-import ninja.soroosh.hashem.lang.runtime.HashemNull;
+import ninja.soroosh.hashem.lang.runtime.HashemPooch;
 import ninja.soroosh.hashem.lang.runtime.HashemUndefinedNameException;
 
 /**
@@ -23,7 +23,7 @@ public abstract class HashemNewObjectBuiltin extends HashemBuiltinNode {
 
     @Specialization
     @SuppressWarnings("unused")
-    public Object newObject(HashemNull o, @CachedContext(HashemLanguage.class) HashemContext context,
+    public Object newObject(HashemPooch o, @CachedContext(HashemLanguage.class) HashemContext context,
                             @Cached("context.getAllocationReporter()") AllocationReporter reporter) {
         return context.createObject(reporter);
     }

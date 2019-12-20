@@ -9,7 +9,7 @@ import ninja.soroosh.hashem.lang.HashemException;
 import ninja.soroosh.hashem.lang.nodes.HashemBinaryNode;
 import ninja.soroosh.hashem.lang.runtime.HashemBigNumber;
 import ninja.soroosh.hashem.lang.runtime.HashemFunction;
-import ninja.soroosh.hashem.lang.runtime.HashemNull;
+import ninja.soroosh.hashem.lang.runtime.HashemPooch;
 
 /**
  * The {@code ==} operator ofHashemiis defined on all types. Therefore, we need a
@@ -55,7 +55,7 @@ public abstract class HashemEqualNode extends HashemBinaryNode {
     }
 
     @Specialization
-    protected boolean equal(HashemNull left, HashemNull right) {
+    protected boolean equal(HashemPooch left, HashemPooch right) {
         /* There is only the singleton instance of SLNull, so we do not need equals(). */
         return left == right;
     }

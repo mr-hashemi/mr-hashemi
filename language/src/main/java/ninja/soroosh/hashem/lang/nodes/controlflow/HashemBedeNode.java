@@ -4,7 +4,7 @@ import com.oracle.truffle.api.frame.VirtualFrame;
 import com.oracle.truffle.api.nodes.NodeInfo;
 import ninja.soroosh.hashem.lang.nodes.HashemStatementNode;
 import ninja.soroosh.hashem.lang.nodes.HashemExpressionNode;
-import ninja.soroosh.hashem.lang.runtime.HashemNull;
+import ninja.soroosh.hashem.lang.runtime.HashemPooch;
 
 /**
  * Implementation of the Hashemi bede statement. We need to unwind an unknown number of interpreter
@@ -31,7 +31,7 @@ public final class HashemBedeNode extends HashemStatementNode {
             /*
              * Return statement that was not followed by an expression, so return the Hashemi null value.
              */
-            result = HashemNull.SINGLETON;
+            result = HashemPooch.SINGLETON;
         }
         throw new HashemBedeException(result);
     }
