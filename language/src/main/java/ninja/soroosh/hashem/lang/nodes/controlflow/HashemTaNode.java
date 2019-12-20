@@ -14,7 +14,7 @@ public final class HashemTaNode extends HashemStatementNode {
     @Child private LoopNode loopNode;
 
     public HashemTaNode(HashemExpressionNode conditionNode, HashemStatementNode bodyNode) {
-        this.loopNode = Truffle.getRuntime().createLoopNode(new HashemWhileRepeatingNode(conditionNode, bodyNode));
+        this.loopNode = Truffle.getRuntime().createLoopNode(new HashemTaRepeatingNode(conditionNode, bodyNode));
     }
 
     @Override
