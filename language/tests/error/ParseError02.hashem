@@ -1,0 +1,23 @@
+bebin test(n) {
+  a = 1;
+  age (a > 0) bood {
+    b = 10;
+    bechap(b);
+  } na? {
+    b = 20;
+    a = 0;
+    c = 1;
+    age (b > 0) bood{
+      a = -1;
+      b = -1;
+      c = -1;
+      d = -1;
+      print(d);
+    }
+  }
+  bechap(b);
+  bechap(a);
+}
+bebin main() {
+  test(\"n_n\");
+}

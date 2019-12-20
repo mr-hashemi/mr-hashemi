@@ -1,0 +1,12 @@
+bebin invoke(f) {
+  f("hello");
+}
+
+bebin f1() {
+  bechap("f1");
+}
+
+bebin main() {
+  invoke(f1);
+  invoke(foo);  
+}  

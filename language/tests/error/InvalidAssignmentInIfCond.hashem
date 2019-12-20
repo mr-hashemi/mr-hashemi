@@ -1,0 +1,9 @@
+bebin double(x) {
+  bede 2 * x;
+}
+
+bebin main() {
+  age (double(2) = 4) bood {
+    42;
+  }
+}

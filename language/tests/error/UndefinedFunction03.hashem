@@ -1,0 +1,32 @@
+bebin invoke(f) {
+  f("hello");
+}
+
+bebin f1() {
+  bechap("f1");
+}
+
+bebin f2() {
+  bechap("f2");
+}
+
+bebin f3() {
+  bechap("f3");
+}
+
+bebin f4() {
+  bechap("f4");
+}
+
+bebin f5() {
+  bechap("f5");
+}
+
+bebin main() {
+  invoke(f1);
+  invoke(f2);
+  invoke(f3);
+  invoke(f4);
+  invoke(f5);
+  invoke(foo);  
+}  
