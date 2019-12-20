@@ -12,7 +12,7 @@ We hope Mr. Hashemi get enough attention to make bilions of tomans out of this p
 ```java
 bebin main() {
   i = 0;
-  ta (i<1) bood{
+  ta (i<1) bood {
     bechap("adad bede");
     n = adadBekhoon();
     derakht(n);
