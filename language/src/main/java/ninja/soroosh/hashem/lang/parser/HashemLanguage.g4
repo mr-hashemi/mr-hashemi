@@ -53,7 +53,7 @@ private static void throwParseError(Source source, int line, int charPositionInL
     throw new HashemParseError(source, line, col, length, String.format("Error(s) parsing script:%n" + location + message));
 }
 
-public static Map<String, RootCallTarget> parseSL(HashemLanguage language, Source source) {
+public static Map<String, RootCallTarget> parseHashemiLang(HashemLanguage language, Source source) {
     HashemLanguageLexer lexer = new HashemLanguageLexer(CharStreams.fromString(source.getCharacters().toString()));
     HashemLanguageParser parser = new HashemLanguageParser(new CommonTokenStream(lexer));
     lexer.removeErrorListeners();

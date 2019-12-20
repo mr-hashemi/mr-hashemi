@@ -397,7 +397,7 @@ public class HashemNodeFactory {
 
     /**
      * Returns a {@link HashemReadLocalVariableNode} if this read is a local variable or a
-     * {@link HashemFunctionLiteralNode} if this read is global. In SL, the only global names are
+     * {@link HashemBebinLiteralNode} if this read is global. In SL, the only global names are
      * functions.
      *
      * @param nameNode The name of the variable/function being read
@@ -421,7 +421,7 @@ public class HashemNodeFactory {
             result = HashemReadLocalVariableNodeGen.create(frameSlot);
         } else {
             /* Read of a global name. In our language, the only global names are functions. */
-            result = new HashemFunctionLiteralNode(name);
+            result = new HashemBebinLiteralNode(name);
         }
         result.setSourceSection(nameNode.getSourceCharIndex(), nameNode.getSourceLength());
         result.addExpressionTag();
