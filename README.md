@@ -38,7 +38,7 @@ bebin derakht(n){
 ```  
   
 ## Basic syntax:  
-### Methods:  
+### Functions:  
 - Declare a method by keyword `bebin` before method name.  
 - Program starts from main method.  
 - to call a function simply call it.  
