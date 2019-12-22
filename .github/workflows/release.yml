@@ -1,51 +1,25 @@
 name: Release Mr. Hashemi
 
-#on:
-#  release:
-#    types: [created]
-
 on:
-  push:
-    branches:
-      - master
+  release:
+    types: [created]
 
 
 jobs:
-  release-windows:
-    runs-on: windows-latest
+  release-linux:
+    runs-on: ubuntu-latest
     steps:
     - uses: DeLaGuardo/setup-graalvm@2.0
       with:
-        graalvm-version: '19.3.0.java8' 
+        graalvm-version: '19.3.0.java8'
     - run: java -version
-    - run: choco install -d windows-sdk-7.1 kb2519277
+    - run: gu install native-image
     - uses: actions/checkout@v1
     - name: Build with Maven
-      run: powershell mvn package
-    - uses: actions/upload-artifact@v1
-      with:
-        name: hashemi-win
-        path: native/hashem-win.exe
+      run: mvn package
     - name: Upload the artifacts
       uses: skx/github-action-publish-binaries@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         args: 'native/hashem*'
-#  release-linux:
-#    runs-on: ubuntu-latest
-#    steps:
-#    - uses: DeLaGuardo/setup-graalvm@2.0
-#      with:
-#        graalvm-version: '19.3.0.java8'
-#    - run: java -version
-#    - run: gu install native-image
-#    - uses: actions/checkout@v1
-#    - name: Build with Maven
-#      run: mvn package
-#    - name: Upload the artifacts
-#      uses: skx/github-action-publish-binaries@master
-#      env:
-#        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#      with:
-#        args: 'native/hashem*'
