@@ -15,6 +15,10 @@ jobs:
     - uses: actions/checkout@v1
     - name: Build with Maven
       run: mvn package
+    - uses: actions/upload-artifact@v1
+      with:
+        name: hashemi-win
+        path: native/hashem-win.exe
     - name: Upload the artifacts
       uses: skx/github-action-publish-binaries@master
       env:
