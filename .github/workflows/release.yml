@@ -21,7 +21,7 @@ jobs:
     - run: choco install -d windows-sdk-7.1 kb2519277
     - uses: actions/checkout@v1
     - name: Build with Maven
-      run: mvn package
+      run: powershell mvn package
     - uses: actions/upload-artifact@v1
       with:
         name: hashemi-win
