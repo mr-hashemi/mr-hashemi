@@ -17,11 +17,10 @@ import ninja.soroosh.hashem.lang.runtime.HashemPooch;
  */
 @NodeInfo(shortName = "import")
 public abstract class HashemImportBuiltin extends HashemBuiltinNode {
-
     @Specialization
     public Object importSymbol(String symbol,
-                    @CachedLibrary(limit = "3") InteropLibrary arrays,
-                    @CachedContext(HashemLanguage.class) HashemContext context) {
+                               @CachedLibrary(limit = "3") InteropLibrary arrays,
+                               @CachedContext(HashemLanguage.class) HashemContext context) {
         try {
             return arrays.readMember(context.getPolyglotBindings(), symbol);
         } catch (UnsupportedMessageException | UnknownIdentifierException e) {
@@ -30,5 +29,4 @@ public abstract class HashemImportBuiltin extends HashemBuiltinNode {
             throw new HashemException("No polyglot access allowed.", this);
         }
     }
-
 }

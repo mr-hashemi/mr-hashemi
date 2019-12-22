@@ -5,7 +5,9 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.oracle.truffle.api.CallTarget;
 import com.oracle.truffle.api.CompilerDirectives;
@@ -23,6 +25,7 @@ import com.oracle.truffle.api.object.DynamicObject;
 import com.oracle.truffle.api.object.Layout;
 import com.oracle.truffle.api.object.Shape;
 import com.oracle.truffle.api.source.Source;
+import com.sun.net.httpserver.HttpServer;
 import ninja.soroosh.hashem.lang.HashemLanguage;
 import ninja.soroosh.hashem.lang.builtins.*;
 import ninja.soroosh.hashem.lang.builtins.HashemBuiltinNode;
@@ -31,7 +34,7 @@ import ninja.soroosh.hashem.lang.nodes.HashemRootNode;
 import ninja.soroosh.hashem.lang.nodes.local.HashemReadArgumentNode;
 
 /**
- * The run-time state ofHashemiduring execution. The context is created by the {@link HashemLanguage}. It
+ * The run-time state of Hashemi during execution. The context is created by the {@link HashemLanguage}. It
  * is used, for example, by {@link HashemBuiltinNode#getContext() builtin functions}.
  * <p>
  * It would be an error to have two different context instances during the execution of one script.
@@ -43,6 +46,8 @@ public final class HashemContext {
     private static final Source BUILTIN_SOURCE = Source.newBuilder(HashemLanguage.ID, "", "SL builtin").build();
     static final Layout LAYOUT = Layout.createLayout();
 
+    private final Map<Integer, HashemWebServer> portServers = new HashMap<>();
+
     private final Env env;
     private final BufferedReader input;
     private final PrintWriter output;
@@ -51,6 +56,7 @@ public final class HashemContext {
     private final HashemLanguage language;
     private final AllocationReporter allocationReporter;
     private final Iterable<Scope> topScopes; // Cache the top scopes
+    private HashemWebServer server;
 
     public HashemContext(HashemLanguage language, TruffleLanguage.Env env, List<NodeFactory<? extends HashemBuiltinNode>> externalBuiltins) {
         this.env = env;
@@ -120,6 +126,9 @@ public final class HashemContext {
         installBuiltin(HashemIsExecutableBuiltinFactory.getInstance());
         installBuiltin(HashemIsPoochBuiltinFactory.getInstance());
         installBuiltin(HashemWrapPrimitiveBuiltinFactory.getInstance());
+        installBuiltin(HashemWebServerBuiltinFactory.getInstance());
+        installBuiltin(HashemStartBuiltinFactory.getInstance());
+        installBuiltin(HashemAddHandlerBuiltinFactory.getInstance());
     }
 
     public void installBuiltin(NodeFactory<? extends HashemBuiltinNode> factory) {
@@ -233,4 +242,11 @@ public final class HashemContext {
         return HashemLanguage.getCurrentContext();
     }
 
+    public void addWebServer(long port, HashemWebServer server) {
+        this.portServers.putIfAbsent((int) port, server);
+    }
+
+    public HashemWebServer getWebServer(long port) {
+        return portServers.get(port);
+    }
 }
