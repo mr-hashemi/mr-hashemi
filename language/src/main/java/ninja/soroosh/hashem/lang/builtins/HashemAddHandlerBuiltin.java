@@ -38,26 +38,23 @@ public abstract class HashemAddHandlerBuiltin extends HashemBuiltinNode {
     public String addHandler(HashemWebServer server,
                              HashemBebin source,
                              @CachedContext(HashemLanguage.class) HashemContext context,
-                             @Cached() IndirectCallNode callNode,
-                             @CachedLibrary(limit = "3") InteropLibrary executables) {
-        RootCallTarget callTarget = source.getCallTarget();
-        return doAddHandler(server, source, context, callNode, callTarget, executables);
+                             @Cached() IndirectCallNode callNode) {
+        return doAddHandler(server, source, context, callNode);
     }
 
     @TruffleBoundary
-    public String doAddHandler(HashemWebServer server, HashemBebin source, HashemContext context, IndirectCallNode callNode, RootCallTarget callTarget, InteropLibrary executables) {
+    public String doAddHandler(HashemWebServer server, HashemBebin source, HashemContext context, IndirectCallNode callNode) {
         server.getValue().createContext("/", new HttpHandler() {
             @Override
             public void handle(HttpExchange exchange) throws IOException {
                 try {
                     System.out.println(source);
-                    callNode.call(source.)
+                    callNode.call(source.getCallTarget());
                     exchange.sendResponseHeaders(200, 0);
                     exchange.getResponseBody().close();
                 } catch (Throwable e) {
                     e.printStackTrace();
                 }
-//                context.parse(source).call();
             }
         });
         return "";
