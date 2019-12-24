@@ -17,13 +17,15 @@ import java.util.concurrent.ThreadFactory;
 @ExportLibrary(InteropLibrary.class)
 public final class HashemWebServer implements TruffleObject, ProxyObject {
     private final HttpServer server;
+    private final ExecutorService executorService;
 
     public HashemWebServer(HttpServer server) {
         this.server = server;
 
-        ExecutorService executorService = Executors
+        executorService = Executors
                 .newFixedThreadPool(1,
                         r -> HashemLanguage.getCurrentContext().getEnv().createThread(r));
+
 
         executorService.submit(() -> { //initialize thread pool
                 }
@@ -58,6 +60,12 @@ public final class HashemWebServer implements TruffleObject, ProxyObject {
     @TruffleBoundary
     public void start() {
         server.start();
+    }
+
+    @TruffleBoundary
+    public void stop() {
+        server.stop(5);
+        executorService.shutdown();
     }
 
     @Override
