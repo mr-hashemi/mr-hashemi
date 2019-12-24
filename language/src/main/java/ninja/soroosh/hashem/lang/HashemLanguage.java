@@ -263,4 +263,13 @@ public final class HashemLanguage extends TruffleLanguage<HashemContext> {
         EXTERNAL_BUILTINS.add(builtin);
     }
 
+    @Override
+    protected void disposeContext(HashemContext context) {
+        super.disposeContext(context);
+    }
+
+    @Override
+    protected void disposeThread(HashemContext context, Thread thread) {
+        super.disposeThread(context, thread);
+    }
 }

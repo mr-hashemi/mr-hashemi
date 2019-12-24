@@ -1,20 +1,8 @@
 
 package ninja.soroosh.hashem.lang.runtime;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import com.oracle.truffle.api.CallTarget;
-import com.oracle.truffle.api.CompilerDirectives;
+import com.oracle.truffle.api.*;
 import com.oracle.truffle.api.CompilerDirectives.TruffleBoundary;
-import com.oracle.truffle.api.Scope;
-import com.oracle.truffle.api.Truffle;
-import com.oracle.truffle.api.TruffleLanguage;
 import com.oracle.truffle.api.TruffleLanguage.Env;
 import com.oracle.truffle.api.dsl.NodeFactory;
 import com.oracle.truffle.api.frame.FrameDescriptor;
@@ -25,13 +13,19 @@ import com.oracle.truffle.api.object.DynamicObject;
 import com.oracle.truffle.api.object.Layout;
 import com.oracle.truffle.api.object.Shape;
 import com.oracle.truffle.api.source.Source;
-import com.sun.net.httpserver.HttpServer;
 import ninja.soroosh.hashem.lang.HashemLanguage;
 import ninja.soroosh.hashem.lang.builtins.*;
-import ninja.soroosh.hashem.lang.builtins.HashemBuiltinNode;
 import ninja.soroosh.hashem.lang.nodes.HashemExpressionNode;
 import ninja.soroosh.hashem.lang.nodes.HashemRootNode;
 import ninja.soroosh.hashem.lang.nodes.local.HashemReadArgumentNode;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * The run-time state of Hashemi during execution. The context is created by the {@link HashemLanguage}. It
@@ -56,7 +50,6 @@ public final class HashemContext {
     private final HashemLanguage language;
     private final AllocationReporter allocationReporter;
     private final Iterable<Scope> topScopes; // Cache the top scopes
-    private HashemWebServer server;
 
     public HashemContext(HashemLanguage language, TruffleLanguage.Env env, List<NodeFactory<? extends HashemBuiltinNode>> externalBuiltins) {
         this.env = env;
@@ -128,6 +121,7 @@ public final class HashemContext {
         installBuiltin(HashemWrapPrimitiveBuiltinFactory.getInstance());
         installBuiltin(HashemWebServerBuiltinFactory.getInstance());
         installBuiltin(HashemStartBuiltinFactory.getInstance());
+        installBuiltin(HashemStopBuiltinFactory.getInstance());
         installBuiltin(HashemAddHandlerBuiltinFactory.getInstance());
     }
 
