@@ -50,7 +50,9 @@ public abstract class HashemAddHandlerBuiltin extends HashemBuiltinNode {
                 try {
                     System.out.println(source);
                     callNode.call(source.getCallTarget());
-                    exchange.sendResponseHeaders(200, 0);
+                    byte[] response = "Hello".getBytes();
+                    exchange.sendResponseHeaders(200, response.length);
+                    exchange.getResponseBody().write(response);
                     exchange.getResponseBody().close();
                 } catch (Throwable e) {
                     e.printStackTrace();
