@@ -16,15 +16,6 @@ import ninja.soroosh.hashem.lang.runtime.HashemWebServer;
 
 import java.io.IOException;
 
-/**
- * Builtin function to write a value to the {@link HashemContext#getOutput() standard output}. The
- * different specialization leverage the typed {@code bechap} methods available in Java, i.e.,
- * primitive values are printed without converting them to a {@link String} first.
- * <p>
- * Printing involves a lot of Java code, so we need to tell the optimizing system that it should not
- * unconditionally inline everything reachable from the bechap() method. This is done via the
- * {@link TruffleBoundary} annotations.
- */
 @NodeInfo(shortName = "addHandler")
 public abstract class HashemAddHandlerBuiltin extends HashemBuiltinNode {
     @Specialization
@@ -41,7 +32,6 @@ public abstract class HashemAddHandlerBuiltin extends HashemBuiltinNode {
             @Override
             public void handle(HttpExchange exchange) throws IOException {
                 try {
-                    System.out.println(source);
                     DynamicObject answer = (DynamicObject) callNode.call(source.getCallTarget());
                     int rCode = ((Long) answer.get("status", 200)).intValue();
                     String body = (String) answer.get("body", "");
