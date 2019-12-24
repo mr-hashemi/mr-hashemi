@@ -5,12 +5,14 @@ import com.oracle.truffle.api.CompilerDirectives.TruffleBoundary;
 import com.oracle.truffle.api.interop.InteropLibrary;
 import com.oracle.truffle.api.interop.TruffleObject;
 import com.oracle.truffle.api.library.ExportLibrary;
-import com.oracle.truffle.api.library.ExportMessage;
 import com.sun.net.httpserver.HttpServer;
+import ninja.soroosh.hashem.lang.HashemLanguage;
 import org.graalvm.polyglot.Value;
 import org.graalvm.polyglot.proxy.ProxyObject;
 
-import java.util.Arrays;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadFactory;
 
 @ExportLibrary(InteropLibrary.class)
 public final class HashemWebServer implements TruffleObject, ProxyObject {
@@ -18,6 +20,16 @@ public final class HashemWebServer implements TruffleObject, ProxyObject {
 
     public HashemWebServer(HttpServer server) {
         this.server = server;
+
+        ExecutorService executorService = Executors
+                .newFixedThreadPool(1,
+                        r -> HashemLanguage.getCurrentContext().getEnv().createThread(r));
+
+        executorService.submit(() -> { //initialize thread pool
+                }
+        );
+
+        server.setExecutor(executorService);
     }
 
 

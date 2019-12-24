@@ -11,19 +11,7 @@ import ninja.soroosh.hashem.lang.runtime.HashemWebServer;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadFactory;
 
-/**
- * Builtin function to write a value to the {@link HashemContext#getOutput() standard output}. The
- * different specialization leverage the typed {@code bechap} methods available in Java, i.e.,
- * primitive values are printed without converting them to a {@link String} first.
- * <p>
- * Printing involves a lot of Java code, so we need to tell the optimizing system that it should not
- * unconditionally inline everything reachable from the bechap() method. This is done via the
- * {@link TruffleBoundary} annotations.
- */
 @NodeInfo(shortName = "webserver")
 public abstract class HashemWebServerBuiltin extends HashemBuiltinNode {
     @Specialization
@@ -34,7 +22,6 @@ public abstract class HashemWebServerBuiltin extends HashemBuiltinNode {
             return hashemWebServer;
         }
         return context.getWebServer(port);
-
     }
 
     @TruffleBoundary
@@ -47,21 +34,6 @@ public abstract class HashemWebServerBuiltin extends HashemBuiltinNode {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        ExecutorService executorService = Executors.newFixedThreadPool(1, new ThreadFactory() {
-            @Override
-            public Thread newThread(Runnable r) {
-                return HashemLanguage.getCurrentContext().getEnv().createThread(r);
-            }
-        });
-        executorService.submit(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("initialize thread pool");
-            }
-        });
-
-        server.setExecutor(executorService);
-
         return new HashemWebServer(server);
     }
 }
