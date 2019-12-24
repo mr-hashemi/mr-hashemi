@@ -15,7 +15,7 @@ public class HashemWebServerTest {
 
     @Before
     public void initEngine() throws Exception {
-        context = Context.newBuilder().allowAllAccess(true).build().create();
+        context = Context.newBuilder().allowCreateThread(true).allowAllAccess(true).build();
 
         // @formatter:off
         context.eval("hashemi",
@@ -29,6 +29,10 @@ public class HashemWebServerTest {
                         "}\n" +
                         "bebin x() {" +
                         "bechap(called);" +
+                        " javab  = jadid(); " +
+                        " javab.status = 202;" +
+                        " javab.body= \"Dorood Jahan\";" +
+                        " bede javab;" +
                         "}"
         );
         // @formatter:on
@@ -59,6 +63,7 @@ public class HashemWebServerTest {
                         "  start(server1);" +
 //                        "  start(server2);" +
                         "  addHandler(server1,x);" +
+                        " start(server1); " +
                         "  bekhoon();" +
                         "}\n" +
                         "bebin x() {" +
