@@ -55,6 +55,11 @@ public final class HashemLanguage extends TruffleLanguage<HashemContext> {
     }
 
     @Override
+    protected boolean isThreadAccessAllowed(Thread thread, boolean singleThreaded) {
+        return true;
+    }
+
+    @Override
     protected CallTarget parse(ParsingRequest request) throws Exception {
         Source source = request.getSource();
         Map<String, RootCallTarget> functions;
