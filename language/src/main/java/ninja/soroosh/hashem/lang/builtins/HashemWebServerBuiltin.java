@@ -11,6 +11,9 @@ import ninja.soroosh.hashem.lang.runtime.HashemWebServer;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadFactory;
 
 /**
  * Builtin function to write a value to the {@link HashemContext#getOutput() standard output}. The
@@ -37,12 +40,27 @@ public abstract class HashemWebServerBuiltin extends HashemBuiltinNode {
     @TruffleBoundary
     private HashemWebServer doBuildServer(long port) {
         InetSocketAddress address = new InetSocketAddress((int) port);
+
         HttpServer server = null;
         try {
             server = HttpServer.create(address, 0);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        ExecutorService executorService = Executors.newFixedThreadPool(1, new ThreadFactory() {
+            @Override
+            public Thread newThread(Runnable r) {
+                return HashemLanguage.getCurrentContext().getEnv().createThread(r);
+            }
+        });
+        executorService.submit(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("initialize thread pool");
+            }
+        });
+
+        server.setExecutor(executorService);
 
         return new HashemWebServer(server);
     }
