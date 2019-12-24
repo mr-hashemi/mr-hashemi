@@ -180,7 +180,7 @@ public final class HashemBebin implements TruffleObject {
         protected static Object doIndirect(HashemBebin function, Object[] arguments,
                                            @Cached IndirectCallNode callNode) {
             /*
-             *Hashemihas a quite simple call lookup: just ask the function for the current call target,
+             *Hashemi has a quite simple call lookup: just ask the function for the current call target,
              * and call it.
              */
             return callNode.call(function.getCallTarget(), arguments);

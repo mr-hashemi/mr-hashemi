@@ -14,7 +14,7 @@ import ninja.soroosh.hashem.lang.runtime.HashemBigNumber;
 import ninja.soroosh.hashem.lang.runtime.HashemPooch;
 
 /**
- * The node to normalize any value to anHashemivalue. This is useful to reduce the number of values
+ * The node to normalize any value to an Hashemi value. This is useful to reduce the number of values
  * expression nodes need to expect.
  */
 @TypeSystemReference(HashemTypes.class)
