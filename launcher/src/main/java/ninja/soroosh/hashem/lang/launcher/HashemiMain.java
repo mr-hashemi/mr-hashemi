@@ -50,7 +50,12 @@ public final class HashemiMain {
         Context context;
         PrintStream err = System.err;
         try {
-            context = Context.newBuilder(HASHEMI).in(in).out(out).options(options).build();
+            context = Context.newBuilder(HASHEMI)
+                    .allowCreateThread(true)
+                    .in(in)
+                    .out(out)
+                    .options(options)
+                    .build();
         } catch (IllegalArgumentException e) {
             err.println(e.getMessage());
             return 1;
