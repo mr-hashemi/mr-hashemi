@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "تعریف متغیر"
-date:   2019-12-25 14:53:22 +0100
+date:   2019-12-25 00:53:22 +0100
 categories: jekyll update
 permalink: /variables/
 ---
