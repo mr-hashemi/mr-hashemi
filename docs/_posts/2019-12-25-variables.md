@@ -12,7 +12,7 @@ permalink: /variables/
 nam = "Mr ";
 famil = "Hashemi";  
 tedadeBacheha = 3;  
-moteahel = true;
+moteahel = 1==1;
 mabda = "Kazeroon";  
 maghsad = "Neishaboor"  
   
