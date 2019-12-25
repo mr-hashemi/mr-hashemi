@@ -4,15 +4,12 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+زبان آقای هاشمی تلاشی است برای تولید یک زبان برنامه‌نویسی بومی، مناسب برای کسانی که قصد شروع برنامه نویسی را دارند.
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
+ دلیل انتخاب نام *آقای هاشمی* برای این زبان، علاقه شدید خالق زبان به شخصیت‌های کتاب تعلیمات اجتماعی دبستان، که با نام *خانواده آقای هاشمی* شناخته می‌شوند، عنوان شده.
+ 
+هر چه به نظر می‌اید که فعالیت آقای هاشمی در اداره *پست* ایران نیز تاثبر بسزایی در انتخاب نامش برای این زبان را ایفا کرده است!
 
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
+ در بخش‌های بعدی این مستندات با خود زبان و ویژگی‌های منحصر به فردی که آقای هاشمی در اختیار شما قرار می‌دهد آشنا خواهیم شد.
 
-
-[jekyll-organization]: https://github.com/jekyll
+![تصویری از زندگی خصوصی آقای هاشمی](/mr-hashemi/assets/hashemi-family.jpg)
