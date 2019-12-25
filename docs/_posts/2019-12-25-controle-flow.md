@@ -21,7 +21,6 @@ ta
  چاپ خواهد شد
    
 {% highlight bash %}
-shart = 1 == 1;  
     age (shart) bood {  
         bechap("doroste");  
         } na? {  
