@@ -21,7 +21,7 @@ ta
  چاپ خواهد شد
    
 {% highlight bash %}
-    age (shart) bood {  
+    age (1==1) bood {  
         bechap("doroste");  
         } na? {  
         bechap("dorost nist, ye fekri barash bokon");  
