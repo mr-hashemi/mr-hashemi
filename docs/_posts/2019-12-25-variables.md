@@ -13,9 +13,9 @@ nam = "Mr ";
 famil = "Hashemi";  
 tedadeBacheha = 3;  
 mabda = "Kazeroon";  
-maghsad = "Neishaboor"  
+maghsad = "Neishaboor";
   
-bechap("Aghaye "+nam+famil+", "+tedadeBacheha+" farzand darad.")  
+bechap("Aghaye "+nam+famil+", "+tedadeBacheha+" farzand darad.");
 // => ke chap khahad kard "Aghaye Mr Hashemi, 3 farzand darad."  
 {% endhighlight %} 
 
