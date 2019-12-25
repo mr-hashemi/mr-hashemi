@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% if page.title %}{{ page.title }} – {% endif %}{{ site.name }} – {{ site.description }}</title>
+
+    {% include meta.html %}
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/style.css" />
+    <link rel="alternate" type="application/rss+xml" title="{{ site.name }} - {{ site.description }}" href="{{ site.baseurl }}/feed.xml" />
+
+    <script src="{{ '/javascripts/fontfaceobserver.js' | prepend: site.baseurl }}"></script>
+    <script src="{{ '/javascripts/blog.js' | prepend: site.baseurl }}"></script>
+
+    <!-- Created with Arabic Jekyll - http://github.com/a3ammar/arabic-jekyll -->
+  </head>
+
+  <body lang="ar">
+    <div class="wrapper-masthead">
+      <div class="container">
+        <header class="masthead clearfix">
+          {% if site.avatar %}
+          <a href="{{ site.baseurl }}/" class="site-avatar"><img src="{{ site.avatar }}" /></a>
+          {% endif %}
+
+          <div class="site-info">
+            <h1 class="site-name"><a href="{{ site.baseurl }}/">{{ site.name }}</a></h1>
+            <p class="site-description">{{ site.description }}</p>
+          </div>
+
+          <nav>
+            <a href="{{ site.baseurl }}/">المدونة</a>
+            <a href="{{ site.baseurl }}/about">من أنا</a>
+          </nav>
+        </header>
+      </div>
+    </div>
+
+    <div id="main" role="main" class="container {% if page.class %}{{ page.class }}{% endif %}">
+      {{ content }}
+    </div>
+
+    <div class="wrapper-footer">
+      <div class="container">
+        <footer class="footer">
+          {% include svg-icons.html %}
+        </footer>
+      </div>
+    </div>
+
+    {% include analytics.html %}
+  </body>
+</html>
