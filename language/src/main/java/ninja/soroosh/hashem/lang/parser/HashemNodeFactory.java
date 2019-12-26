@@ -290,6 +290,9 @@ public class HashemNodeFactory {
             case "/":
                 result = HashemDivNodeGen.create(leftUnboxed, rightUnboxed);
                 break;
+            case "%":
+                result = HashemModNodeGen.create(leftUnboxed,rightUnboxed);
+                break;
             case "-":
                 result = HashemSubNodeGen.create(leftUnboxed, rightUnboxed);
                 break;

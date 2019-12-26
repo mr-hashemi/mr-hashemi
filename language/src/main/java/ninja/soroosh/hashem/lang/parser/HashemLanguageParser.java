@@ -35,8 +35,8 @@ public class HashemLanguageParser extends Parser {
 		T__9=10, T__10=11, T__11=12, T__12=13, T__13=14, T__14=15, T__15=16, T__16=17, 
 		T__17=18, T__18=19, T__19=20, T__20=21, T__21=22, T__22=23, T__23=24, 
 		T__24=25, T__25=26, T__26=27, T__27=28, T__28=29, T__29=30, T__30=31, 
-		WS=32, COMMENT=33, LINE_COMMENT=34, IDENTIFIER=35, STRING_LITERAL=36, 
-		NUMERIC_LITERAL=37;
+		T__31=32, WS=33, COMMENT=34, LINE_COMMENT=35, IDENTIFIER=36, STRING_LITERAL=37, 
+		NUMERIC_LITERAL=38;
 	public static final int
 		RULE_hashemlanguage = 0, RULE_function = 1, RULE_block = 2, RULE_statement = 3, 
 		RULE_while_statement = 4, RULE_if_statement = 5, RULE_return_statement = 6, 
@@ -52,13 +52,13 @@ public class HashemLanguageParser extends Parser {
 		null, "'bebin'", "'('", "','", "')'", "'{'", "'}'", "'khob'", "';'", "'badi'", 
 		"'debugger'", "'ta'", "') bood'", "'age'", "'na?'", "'bede'", "'||'", 
 		"'&&'", "'<'", "'<='", "'>'", "'>='", "'=='", "'!='", "'+'", "'-'", "'*'", 
-		"'/'", "'='", "'.'", "'['", "']'"
+		"'/'", "'%'", "'='", "'.'", "'['", "']'"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
 		null, null, null, null, null, null, null, null, null, null, null, null, 
 		null, null, null, null, null, null, null, null, null, null, null, null, 
-		null, null, null, null, null, null, null, null, "WS", "COMMENT", "LINE_COMMENT", 
-		"IDENTIFIER", "STRING_LITERAL", "NUMERIC_LITERAL"
+		null, null, null, null, null, null, null, null, null, "WS", "COMMENT", 
+		"LINE_COMMENT", "IDENTIFIER", "STRING_LITERAL", "NUMERIC_LITERAL"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -129,7 +129,7 @@ public class HashemLanguageParser extends Parser {
 	    int col = charPositionInLine + 1;
 	    String location = "-- line " + line + " col " + col + ": ";
 	    int length = token == null ? 1 : Math.max(token.getStopIndex() - token.getStartIndex(), 0);
-	    throw new HashemParseError(source, line, col, length, String.format("Error(s) parsing script:%n" + location + message));
+	    throw new HashemParseError(source, line, col, length, "Error(s) parsing script:\n" + location + message);
 	}
 
 	public static Map<String, RootCallTarget> parseHashemiLang(HashemLanguage language, Source source) {
@@ -904,7 +904,7 @@ public class HashemLanguageParser extends Parser {
 					setState(168);
 					((TermContext)_localctx).op = _input.LT(1);
 					_la = _input.LA(1);
-					if ( !(_la==T__25 || _la==T__26) ) {
+					if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__25) | (1L << T__26) | (1L << T__27))) != 0)) ) {
 						((TermContext)_localctx).op = (Token)_errHandler.recoverInline(this);
 					}
 					else {
@@ -1114,10 +1114,10 @@ public class HashemLanguageParser extends Parser {
 				 ((Member_expressionContext)_localctx).result =  factory.createCall(receiver, parameters, ((Member_expressionContext)_localctx).e); 
 				}
 				break;
-			case T__27:
+			case T__28:
 				{
 				setState(214);
-				match(T__27);
+				match(T__28);
 				setState(215);
 				((Member_expressionContext)_localctx).expression = expression();
 				 if (assignmentName == null) {
@@ -1129,10 +1129,10 @@ public class HashemLanguageParser extends Parser {
 				                                                  } 
 				}
 				break;
-			case T__28:
+			case T__29:
 				{
 				setState(218);
-				match(T__28);
+				match(T__29);
 				 if (receiver == null) {
 				                                                       receiver = factory.createRead(assignmentName);
 				                                                  } 
@@ -1142,10 +1142,10 @@ public class HashemLanguageParser extends Parser {
 				                                                  ((Member_expressionContext)_localctx).result =  factory.createReadProperty(receiver, nestedAssignmentName); 
 				}
 				break;
-			case T__29:
+			case T__30:
 				{
 				setState(222);
-				match(T__29);
+				match(T__30);
 				 if (receiver == null) {
 				                                                      receiver = factory.createRead(assignmentName);
 				                                                  } 
@@ -1154,7 +1154,7 @@ public class HashemLanguageParser extends Parser {
 				 nestedAssignmentName = ((Member_expressionContext)_localctx).expression.result;
 				                                                  ((Member_expressionContext)_localctx).result =  factory.createReadProperty(receiver, nestedAssignmentName); 
 				setState(226);
-				match(T__30);
+				match(T__31);
 				}
 				break;
 			default:
@@ -1185,7 +1185,7 @@ public class HashemLanguageParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\'\u00ee\4\2\t\2\4"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3(\u00ee\4\2\t\2\4"+
 		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t"+
 		"\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\3\2\3\2\7\2!\n\2\f\2\16\2$\13"+
 		"\2\3\2\3\2\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\7\3\61\n\3\f\3\16\3\64"+
@@ -1203,13 +1203,13 @@ public class HashemLanguageParser extends Parser {
 		"\16\17\u00d3\13\17\5\17\u00d5\n\17\3\17\3\17\3\17\3\17\3\17\3\17\3\17"+
 		"\3\17\3\17\3\17\3\17\3\17\3\17\3\17\3\17\3\17\5\17\u00e7\n\17\3\17\3\17"+
 		"\3\17\5\17\u00ec\n\17\3\17\2\2\20\2\4\6\b\n\f\16\20\22\24\26\30\32\34"+
-		"\2\5\3\2\24\31\3\2\32\33\3\2\34\35\2\u00fa\2\36\3\2\2\2\4\'\3\2\2\2\6"+
+		"\2\5\3\2\24\31\3\2\32\33\3\2\34\36\2\u00fa\2\36\3\2\2\2\4\'\3\2\2\2\6"+
 		";\3\2\2\2\b^\3\2\2\2\n`\3\2\2\2\fg\3\2\2\2\16u\3\2\2\2\20\177\3\2\2\2"+
 		"\22\u008a\3\2\2\2\24\u0095\3\2\2\2\26\u009d\3\2\2\2\30\u00a8\3\2\2\2\32"+
 		"\u00c4\3\2\2\2\34\u00c6\3\2\2\2\36\"\5\4\3\2\37!\5\4\3\2 \37\3\2\2\2!"+
 		"$\3\2\2\2\" \3\2\2\2\"#\3\2\2\2#%\3\2\2\2$\"\3\2\2\2%&\7\2\2\3&\3\3\2"+
-		"\2\2\'(\7\3\2\2()\7%\2\2)*\7\4\2\2*\65\b\3\1\2+,\7%\2\2,\62\b\3\1\2-."+
-		"\7\5\2\2./\7%\2\2/\61\b\3\1\2\60-\3\2\2\2\61\64\3\2\2\2\62\60\3\2\2\2"+
+		"\2\2\'(\7\3\2\2()\7&\2\2)*\7\4\2\2*\65\b\3\1\2+,\7&\2\2,\62\b\3\1\2-."+
+		"\7\5\2\2./\7&\2\2/\61\b\3\1\2\60-\3\2\2\2\61\64\3\2\2\2\62\60\3\2\2\2"+
 		"\62\63\3\2\2\2\63\66\3\2\2\2\64\62\3\2\2\2\65+\3\2\2\2\65\66\3\2\2\2\66"+
 		"\67\3\2\2\2\678\7\6\2\289\5\6\4\29:\b\3\1\2:\5\3\2\2\2;<\b\4\1\2<B\7\7"+
 		"\2\2=>\5\b\5\2>?\b\4\1\2?A\3\2\2\2@=\3\2\2\2AD\3\2\2\2B@\3\2\2\2BC\3\2"+
@@ -1239,10 +1239,10 @@ public class HashemLanguageParser extends Parser {
 		"\2\u00a8\u00a9\5\32\16\2\u00a9\u00b0\b\r\1\2\u00aa\u00ab\t\4\2\2\u00ab"+
 		"\u00ac\5\32\16\2\u00ac\u00ad\b\r\1\2\u00ad\u00af\3\2\2\2\u00ae\u00aa\3"+
 		"\2\2\2\u00af\u00b2\3\2\2\2\u00b0\u00ae\3\2\2\2\u00b0\u00b1\3\2\2\2\u00b1"+
-		"\31\3\2\2\2\u00b2\u00b0\3\2\2\2\u00b3\u00b4\7%\2\2\u00b4\u00b9\b\16\1"+
+		"\31\3\2\2\2\u00b2\u00b0\3\2\2\2\u00b3\u00b4\7&\2\2\u00b4\u00b9\b\16\1"+
 		"\2\u00b5\u00b6\5\34\17\2\u00b6\u00b7\b\16\1\2\u00b7\u00ba\3\2\2\2\u00b8"+
 		"\u00ba\b\16\1\2\u00b9\u00b5\3\2\2\2\u00b9\u00b8\3\2\2\2\u00ba\u00c5\3"+
-		"\2\2\2\u00bb\u00bc\7&\2\2\u00bc\u00c5\b\16\1\2\u00bd\u00be\7\'\2\2\u00be"+
+		"\2\2\2\u00bb\u00bc\7\'\2\2\u00bc\u00c5\b\16\1\2\u00bd\u00be\7(\2\2\u00be"+
 		"\u00c5\b\16\1\2\u00bf\u00c0\7\4\2\2\u00c0\u00c1\5\20\t\2\u00c1\u00c2\7"+
 		"\6\2\2\u00c2\u00c3\b\16\1\2\u00c3\u00c5\3\2\2\2\u00c4\u00b3\3\2\2\2\u00c4"+
 		"\u00bb\3\2\2\2\u00c4\u00bd\3\2\2\2\u00c4\u00bf\3\2\2\2\u00c5\33\3\2\2"+
@@ -1252,10 +1252,10 @@ public class HashemLanguageParser extends Parser {
 		"\u00d3\3\2\2\2\u00d1\u00cf\3\2\2\2\u00d1\u00d2\3\2\2\2\u00d2\u00d5\3\2"+
 		"\2\2\u00d3\u00d1\3\2\2\2\u00d4\u00c9\3\2\2\2\u00d4\u00d5\3\2\2\2\u00d5"+
 		"\u00d6\3\2\2\2\u00d6\u00d7\7\6\2\2\u00d7\u00e7\b\17\1\2\u00d8\u00d9\7"+
-		"\36\2\2\u00d9\u00da\5\20\t\2\u00da\u00db\b\17\1\2\u00db\u00e7\3\2\2\2"+
-		"\u00dc\u00dd\7\37\2\2\u00dd\u00de\b\17\1\2\u00de\u00df\7%\2\2\u00df\u00e7"+
-		"\b\17\1\2\u00e0\u00e1\7 \2\2\u00e1\u00e2\b\17\1\2\u00e2\u00e3\5\20\t\2"+
-		"\u00e3\u00e4\b\17\1\2\u00e4\u00e5\7!\2\2\u00e5\u00e7\3\2\2\2\u00e6\u00c7"+
+		"\37\2\2\u00d9\u00da\5\20\t\2\u00da\u00db\b\17\1\2\u00db\u00e7\3\2\2\2"+
+		"\u00dc\u00dd\7 \2\2\u00dd\u00de\b\17\1\2\u00de\u00df\7&\2\2\u00df\u00e7"+
+		"\b\17\1\2\u00e0\u00e1\7!\2\2\u00e1\u00e2\b\17\1\2\u00e2\u00e3\5\20\t\2"+
+		"\u00e3\u00e4\b\17\1\2\u00e4\u00e5\7\"\2\2\u00e5\u00e7\3\2\2\2\u00e6\u00c7"+
 		"\3\2\2\2\u00e6\u00d8\3\2\2\2\u00e6\u00dc\3\2\2\2\u00e6\u00e0\3\2\2\2\u00e7"+
 		"\u00eb\3\2\2\2\u00e8\u00e9\5\34\17\2\u00e9\u00ea\b\17\1\2\u00ea\u00ec"+
 		"\3\2\2\2\u00eb\u00e8\3\2\2\2\u00eb\u00ec\3\2\2\2\u00ec\35\3\2\2\2\24\""+

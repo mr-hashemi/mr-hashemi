@@ -50,7 +50,7 @@ private static void throwParseError(Source source, int line, int charPositionInL
     int col = charPositionInLine + 1;
     String location = "-- line " + line + " col " + col + ": ";
     int length = token == null ? 1 : Math.max(token.getStopIndex() - token.getStartIndex(), 0);
-    throw new HashemParseError(source, line, col, length, String.format("Error(s) parsing script:%n" + location + message));
+    throw new HashemParseError(source, line, col, length, "Error(s) parsing script:\n" + location + message);
 }
 
 public static Map<String, RootCallTarget> parseHashemiLang(HashemLanguage language, Source source) {
@@ -211,7 +211,7 @@ term returns [HashemExpressionNode result]
 :
 factor                                          { $result = $factor.result; }
 (
-    op=('*' | '/')
+    op=('*' | '/' | '%')
     factor                                      { $result = factory.createBinary($op, $result, $factor.result); }
 )*
 ;

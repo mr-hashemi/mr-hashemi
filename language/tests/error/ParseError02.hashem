@@ -7,7 +7,7 @@ bebin test(n) {
     b = 20;
     a = 0;
     c = 1;
-    age (b > 0) bood{
+    age (b > 0) bood {
       a = -1;
       b = -1;
       c = -1;
