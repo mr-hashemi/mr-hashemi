@@ -8,10 +8,11 @@ permalink: /variables/
 برای تعریف متغیر تنها کافی است که نام متغیر را نوشته و سپس آن را مقداردهی کنیم.      
 
 
-{% highlight java %}
+{% highlight bash %}
 nam = "Mr ";
 famil = "Hashemi";  
 tedadeBacheha = 3;  
+moteahel = 1==1;
 mabda = "Kazeroon";  
 maghsad = "Neishaboor";
   
