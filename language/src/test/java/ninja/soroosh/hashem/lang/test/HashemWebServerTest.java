@@ -1,19 +1,17 @@
 package ninja.soroosh.hashem.lang.test;
 
 import org.graalvm.polyglot.Context;
+import org.graalvm.polyglot.HostAccess;
 import org.graalvm.polyglot.Value;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-
-@Ignore
+//@Ignore
 public class HashemWebServerTest {
 
     private Context context;
-    private Value factorial;
+    private Value server;
 
     @Before
     public void initEngine() throws Exception {
@@ -36,7 +34,7 @@ public class HashemWebServerTest {
         );
         // @formatter:on
 
-        factorial = context.getBindings("hashemi").getMember("server");
+        server = context.getBindings("hashemi").getMember("server");
     }
 
     @After
@@ -44,20 +42,22 @@ public class HashemWebServerTest {
         context.close();
     }
 
-    @Test
-    public void factorialOf5() throws Exception {
-        Value value = factorial.execute();
-        System.out.println(value);
-        context.close();
-    }
+//    @Test
+//    public void factorialOf5() throws Exception {
+//        Value value = server.execute();
+//        System.out.println(value);
+//        context.close();
+//    }
 
     @Test
     public void factorialOf3() throws Exception {
-        context = Context.newBuilder().allowAllAccess(true).build().create();
+        context = Context.newBuilder().allowCreateThread(true).allowAllAccess(true).out(System.out).build().create();
 
         // @formatter:off
         context.eval("hashemi",
-                "bebin server() {\n" +
+                "bebin server(request) {\n" +
+                        "  bechap(\"req is \"+ request.method);" +
+                        "  bechap(\"req is \"+ request.getMethod());" +
                         "  server1 = webserver(9091);" +
 //                        "  server2 = webserver(9092);" +
                         "  start(server1);" +
@@ -70,15 +70,27 @@ public class HashemWebServerTest {
                         "}"
         );
         // @formatter:on
-        factorial.execute();
+
+        server = context.getBindings("hashemi").getMember("server");
+        System.out.println(server.execute(new HttpReq()));
 
         context.close();
-
     }
 
-    @Test
-    public void factorialOf1() throws Exception {
-        Number ret = factorial.execute(1).as(Number.class);
-        context.close();
+    //    @Test
+//    public void factorialOf1() throws Exception {
+//        Number ret = server.execute(1).as(Number.class);
+//        context.close();
+//    }
+//implements ProxyObject
+    public static class HttpReq {
+        @HostAccess.Export
+        public String getMethod() {
+            return "POST";
+        }
+
+        @HostAccess.Export
+        public String method = "POST";
     }
 }
+
