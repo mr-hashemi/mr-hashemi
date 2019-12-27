@@ -52,8 +52,8 @@ public class PassItselfBackViaContextTest {
         myObj = new MyObj();
         context = Context.newBuilder().allowPolyglotAccess(PolyglotAccess.ALL).build();
         context.getPolyglotBindings().putMember("myObj", myObj);
-        context.eval("hashemi", "bebin main() {\n" + "  bede import(\"myObj\");\n" + "}\n");
-        myObjWrapped = context.getBindings("hashemi").getMember("main").execute();
+        context.eval("hashemi", "bebin azinja() {\n" + "  bede import(\"myObj\");\n" + "}\n");
+        myObjWrapped = context.getBindings("hashemi").getMember("azinja").execute();
         assertFalse(myObjWrapped.isNull());
         myObjCall = myObjWrapped.as(CallWithValue.class);
     }

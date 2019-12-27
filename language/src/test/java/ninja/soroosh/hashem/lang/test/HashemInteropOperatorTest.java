@@ -24,7 +24,7 @@ public class HashemInteropOperatorTest {
 
     @Test
     public void testAdd() {
-        final Source src = Source.newBuilder("hashemi", "bebin testAdd(a,b) {bede a + b;} bebin main() {bede testAdd;}", "testAdd.hashem").buildLiteral();
+        final Source src = Source.newBuilder("hashemi", "bebin testAdd(a,b) {bede a + b;} bebin azinja() {bede testAdd;}", "testAdd.hashem").buildLiteral();
         final Value fnc = context.eval(src);
         Assert.assertTrue(fnc.canExecute());
         final Value res = fnc.execute(1, 2);
@@ -34,7 +34,7 @@ public class HashemInteropOperatorTest {
 
     @Test
     public void testSub() {
-        final Source src = Source.newBuilder("hashemi", "bebin testSub(a,b) {bede a - b;} bebin main() {bede testSub;}", "testSub.hashem").buildLiteral();
+        final Source src = Source.newBuilder("hashemi", "bebin testSub(a,b) {bede a - b;} bebin azinja() {bede testSub;}", "testSub.hashem").buildLiteral();
         final Value fnc = context.eval(src);
         final Value res = fnc.execute(1, 2);
         Assert.assertTrue(res.isNumber());

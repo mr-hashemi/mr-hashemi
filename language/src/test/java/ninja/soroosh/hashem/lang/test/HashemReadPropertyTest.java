@@ -22,7 +22,7 @@ public class HashemReadPropertyTest {
                         "obj1.number = 42;\n" +
                         "bede obj1;\n" +
                         "}\n" +
-                        "bebin main() {\n" +
+                        "bebin azinja() {\n" +
                         "bede createObject;\n" +
                         "}").execute();
     }

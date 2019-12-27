@@ -49,7 +49,7 @@ public class HashemParseErrorTest {
     @Test
     public void testParseErrorEOF1() {
         try {
-            final Source src = Source.newBuilder("hashemi", "bebin main", "testSyntaxErrorEOF1.hashem").buildLiteral();
+            final Source src = Source.newBuilder("hashemi", "bebin azinja", "testSyntaxErrorEOF1.hashem").buildLiteral();
             context.eval(src);
             Assert.assertTrue("Should not reach here.", false);
         } catch (PolyglotException e) {

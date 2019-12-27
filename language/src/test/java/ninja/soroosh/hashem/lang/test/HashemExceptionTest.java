@@ -43,25 +43,25 @@ public class HashemExceptionTest {
 
     @Test
     public void testExceptions() {
-        assertException(true, "bebin main() { x = 1 / (1 == 1); }", "main");
-        assertException(true, "bebin foo() { bede 1 / \"foo\"; } bebin main() { foo(); }", "foo", "main");
-        assertException(true, "bebin foo() { bar(); } bebin bar() { bede 1 / \"foo\"; } bebin main() { foo(); }", "bar", "foo", "main");
-        assertException(true, "bebin foo() { bar1(); bar2(); } bebin bar1() { bede 1; } bebin bar2() { bede \"foo\" / 1; } bebin main() { foo(); }", "bar2", "foo", "main");
+        assertException(true, "bebin azinja() { x = 1 / (1 == 1); }", "azinja");
+        assertException(true, "bebin foo() { bede 1 / \"foo\"; } bebin azinja() { foo(); }", "foo", "azinja");
+        assertException(true, "bebin foo() { bar(); } bebin bar() { bede 1 / \"foo\"; } bebin azinja() { foo(); }", "bar", "foo", "azinja");
+        assertException(true, "bebin foo() { bar1(); bar2(); } bebin bar1() { bede 1; } bebin bar2() { bede \"foo\" / 1; } bebin azinja() { foo(); }", "bar2", "foo", "azinja");
     }
 
     @Test
     public void testNonMain() {
-        assertException(false, "bebin foo(z) { x = 1 / (1==1); } bebin main() { bede foo; }", "foo");
+        assertException(false, "bebin foo(z) { x = 1 / (1==1); } bebin azinja() { bede foo; }", "foo");
     }
 
     @Test
     public void testThroughProxy() {
-        assertException(false, "bebin bar() { x = 1 / (1==1); } bebin foo(z) { z(bar); } bebin main() { bede foo; }", "bar", null, null, "foo");
+        assertException(false, "bebin bar() { x = 1 / (1==1); } bebin foo(z) { z(bar); } bebin azinja() { bede foo; }", "bar", null, null, "foo");
     }
 
     @Test
     public void testHostException() {
-        assertHostException("bebin foo(z) { z(1); } bebin main() { bede foo; }", null, "foo");
+        assertHostException("bebin foo(z) { z(1); } bebin azinja() { bede foo; }", null, "foo");
     }
 
     private void assertException(boolean failImmediately, String source, String... expectedFrames) {
@@ -126,7 +126,7 @@ public class HashemExceptionTest {
         try {
             String source = "bebin bar() { x = 1 / \"asdf\"; }\n" +
                     "bebin foo() { bede bar(); }\n" +
-                    "bebin main() { foo(); }";
+                    "bebin azinja() { foo(); }";
             ctx.eval(Source.newBuilder("hashemi", source, "script.hashemi").buildLiteral());
             fail();
         } catch (PolyglotException e) {
@@ -135,7 +135,7 @@ public class HashemExceptionTest {
             Iterator<StackFrame> frames = e.getPolyglotStackTrace().iterator();
             assertGuestFrame(frames, "hashemi", "bar", "script.hashemi", 18, 28);
             assertGuestFrame(frames, "hashemi", "foo", "script.hashemi", 51, 56);
-            assertGuestFrame(frames, "hashemi", "main", "script.hashemi", 75, 80);
+            assertGuestFrame(frames, "hashemi", "azinja", "script.hashemi", 77, 82);
             assertHostFrame(frames, Context.class.getName(), "eval");
             assertHostFrame(frames, HashemExceptionTest.class.getName(), "testGuestLanguageError");
 
@@ -177,7 +177,7 @@ public class HashemExceptionTest {
 
     @Test
     public void testProxyGuestLanguageStack() {
-        Value bar = ctx.eval("hashemi", "bebin foo(f) { f(); } bebin bar(f) { bede foo(f); } bebin main() { bede bar; }");
+        Value bar = ctx.eval("hashemi", "bebin foo(f) { f(); } bebin bar(f) { bede foo(f); } bebin azinja() { bede bar; }");
 
         TestProxy proxy = new TestProxy(3, bar);
         try {

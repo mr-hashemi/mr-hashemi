@@ -14,7 +14,7 @@ import org.junit.Test;
  */
 public class HashemDebugALot {
 
-    private final Source slCode = Source.create("hashemi", "bebin main() {\n" +
+    private final Source slCode = Source.create("hashemi", "bebin azinja() {\n" +
                     "  n = 2;\n" +
                     "  return types(n);\n" +
                     "}\n" +

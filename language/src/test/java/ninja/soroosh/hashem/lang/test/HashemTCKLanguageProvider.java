@@ -246,7 +246,7 @@ public class HashemTCKLanguageProvider implements LanguageProvider {
         return context.eval(ID,
                         fncDecl +
                                         "\n" +
-                                        "bebin main() {\n" +
+                                        "bebin azinja() {\n" +
                                         String.format("  return %s;\n", functionName) +
                                         "}");
     }
