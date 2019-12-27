@@ -10,7 +10,7 @@ We hope Mr. Hashemi get enough attention to make bilions of tomans out of this p
 
 **example:**
 ```java
-bebin main() {
+bebin azinja() {
   i = 0;
   ta (i<1) bood {
     bechap("adad bede");
@@ -54,9 +54,9 @@ The usual `if (condition) {code}` conditions definition is defined as `age (shar
 - Number :
 	- adad = 313;
 - Object :
-	- object = jadid();
-	- object.property1 = "some property";
-	- object.name = "name";
-	- object.age = 33;
+	- chiz = jadid();
+	- chiz.sefat1 = "hala ye chizi";
+	- chiz.esm = "mammad";
+	- chiz.sen = 33;
 ### logical operators:
 Basically like java you can find the list [here](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/opsummary.html) .

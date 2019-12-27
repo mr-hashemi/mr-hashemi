@@ -1,0 +1,29 @@
+//
+// VARIABLES
+//
+
+// Colors
+$blue: #4183C4;
+
+// Grays
+$black: #000;
+$darkerGray: #222;
+$darkGray: #333;
+$gray: #666;
+$lightGray: #eee;
+$white: #fff;
+$red: #dd2b55;
+
+$base-font-family: Helvetica, Arial, sans-serif;
+$heading-font-family: Noto Kufi Arabic, $base-font-family;
+$body-font-family: Noto Naskh Arabic, $base-font-family;
+
+$monospace-font-family: Bitstream Vera Sans Mono, Courier, monospace;
+$code-font-family: Kawkab Mono, $monospace-font-family;
+
+// Mobile breakpoints
+@mixin mobile {
+  @media screen and (max-width: 640px) {
+    @content;
+  }
+}

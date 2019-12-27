@@ -1,3 +1,46 @@
+/*
+ *
+ *  * Copyright (c) 2012, 2018, Oracle and/or its affiliates. All rights reserved.
+ *  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
+ *  *
+ *  * The Universal Permissive License (UPL), Version 1.0
+ *  *
+ *  * Subject to the condition set forth below, permission is hereby granted to any
+ *  * person obtaining a copy of this software, associated documentation and/or
+ *  * data (collectively the "Software"), free of charge and under any and all
+ *  * copyright rights in the Software, and any and all patent rights owned or
+ *  * freely licensable by each licensor hereunder covering either (i) the
+ *  * unmodified Software as contributed to or provided by such licensor, or (ii)
+ *  * the Larger Works (as defined below), to deal in both
+ *  *
+ *  * (a) the Software, and
+ *  *
+ *  * (b) any piece of software and/or hardware listed in the lrgrwrks.txt file if
+ *  * one is included with the Software each a "Larger Work" to which the Software
+ *  * is contributed by such licensors),
+ *  *
+ *  * without restriction, including without limitation the rights to copy, create
+ *  * derivative works of, display, perform, and distribute the Software and make,
+ *  * use, sell, offer for sale, import, export, have made, and have sold the
+ *  * Software and the Larger Work(s), and to sublicense the foregoing rights on
+ *  * either these or other terms.
+ *  *
+ *  * This license is subject to the following condition:
+ *  *
+ *  * The above copyright notice and either this complete permission notice or at a
+ *  * minimum a reference to the UPL must be included in all copies or substantial
+ *  * portions of the Software.
+ *  *
+ *  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ *  * SOFTWARE.
+ *
+ */
+
 package ninja.soroosh.hashem.lang.test;
 
 import static org.junit.Assert.assertEquals;
@@ -43,25 +86,25 @@ public class HashemExceptionTest {
 
     @Test
     public void testExceptions() {
-        assertException(true, "bebin main() { x = 1 / (1 == 1); }", "main");
-        assertException(true, "bebin foo() { bede 1 / \"foo\"; } bebin main() { foo(); }", "foo", "main");
-        assertException(true, "bebin foo() { bar(); } bebin bar() { bede 1 / \"foo\"; } bebin main() { foo(); }", "bar", "foo", "main");
-        assertException(true, "bebin foo() { bar1(); bar2(); } bebin bar1() { bede 1; } bebin bar2() { bede \"foo\" / 1; } bebin main() { foo(); }", "bar2", "foo", "main");
+        assertException(true, "bebin azinja() { x = 1 / (1 == 1); }", "azinja");
+        assertException(true, "bebin foo() { bede 1 / \"foo\"; } bebin azinja() { foo(); }", "foo", "azinja");
+        assertException(true, "bebin foo() { bar(); } bebin bar() { bede 1 / \"foo\"; } bebin azinja() { foo(); }", "bar", "foo", "azinja");
+        assertException(true, "bebin foo() { bar1(); bar2(); } bebin bar1() { bede 1; } bebin bar2() { bede \"foo\" / 1; } bebin azinja() { foo(); }", "bar2", "foo", "azinja");
     }
 
     @Test
     public void testNonMain() {
-        assertException(false, "bebin foo(z) { x = 1 / (1==1); } bebin main() { bede foo; }", "foo");
+        assertException(false, "bebin foo(z) { x = 1 / (1==1); } bebin azinja() { bede foo; }", "foo");
     }
 
     @Test
     public void testThroughProxy() {
-        assertException(false, "bebin bar() { x = 1 / (1==1); } bebin foo(z) { z(bar); } bebin main() { bede foo; }", "bar", null, null, "foo");
+        assertException(false, "bebin bar() { x = 1 / (1==1); } bebin foo(z) { z(bar); } bebin azinja() { bede foo; }", "bar", null, null, "foo");
     }
 
     @Test
     public void testHostException() {
-        assertHostException("bebin foo(z) { z(1); } bebin main() { bede foo; }", null, "foo");
+        assertHostException("bebin foo(z) { z(1); } bebin azinja() { bede foo; }", null, "foo");
     }
 
     private void assertException(boolean failImmediately, String source, String... expectedFrames) {
@@ -126,7 +169,7 @@ public class HashemExceptionTest {
         try {
             String source = "bebin bar() { x = 1 / \"asdf\"; }\n" +
                     "bebin foo() { bede bar(); }\n" +
-                    "bebin main() { foo(); }";
+                    "bebin azinja() { foo(); }";
             ctx.eval(Source.newBuilder("hashemi", source, "script.hashemi").buildLiteral());
             fail();
         } catch (PolyglotException e) {
@@ -135,7 +178,7 @@ public class HashemExceptionTest {
             Iterator<StackFrame> frames = e.getPolyglotStackTrace().iterator();
             assertGuestFrame(frames, "hashemi", "bar", "script.hashemi", 18, 28);
             assertGuestFrame(frames, "hashemi", "foo", "script.hashemi", 51, 56);
-            assertGuestFrame(frames, "hashemi", "main", "script.hashemi", 75, 80);
+            assertGuestFrame(frames, "hashemi", "azinja", "script.hashemi", 77, 82);
             assertHostFrame(frames, Context.class.getName(), "eval");
             assertHostFrame(frames, HashemExceptionTest.class.getName(), "testGuestLanguageError");
 
@@ -177,7 +220,7 @@ public class HashemExceptionTest {
 
     @Test
     public void testProxyGuestLanguageStack() {
-        Value bar = ctx.eval("hashemi", "bebin foo(f) { f(); } bebin bar(f) { bede foo(f); } bebin main() { bede bar; }");
+        Value bar = ctx.eval("hashemi", "bebin foo(f) { f(); } bebin bar(f) { bede foo(f); } bebin azinja() { bede bar; }");
 
         TestProxy proxy = new TestProxy(3, bar);
         try {

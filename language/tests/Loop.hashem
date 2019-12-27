@@ -1,4 +1,4 @@
-bebin main() {
+bebin azinja() {
   i = 0;  
   ta (i < 1000) bood{
     i = i + 1;  

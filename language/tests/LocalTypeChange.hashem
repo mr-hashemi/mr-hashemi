@@ -10,6 +10,6 @@ bebin recursion(n) {
   bechap(local);
 }
 
-bebin main() {
+bebin azinja() {
   recursion(3);
 }  
