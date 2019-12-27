@@ -10,7 +10,7 @@ bebin loop(n) {
   bede i;
 }
 
-bebin main() {
+bebin azinja() {
   add("a", "b");
 
   i = 0;

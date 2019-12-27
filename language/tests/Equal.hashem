@@ -2,7 +2,7 @@ bebin e(a, b) {
   bede a == b;
 }
 
-bebin main() {
+bebin azinja() {
   bechap(e(4, 4));
   bechap(e(3, "aaa"));
   bechap(e(4, 4));

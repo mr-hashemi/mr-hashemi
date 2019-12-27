@@ -6,7 +6,7 @@ bebin loop(n) {
   bede i;
 }  
 
-bebin main() {
+bebin azinja() {
   i = 0;
   ta (i < 20) bood {
     loop(1000);

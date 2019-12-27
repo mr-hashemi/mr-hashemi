@@ -12,7 +12,7 @@ bebin fib(num) {
   bede n2;
 }
 
-bebin main() {
+bebin azinja() {
   i = 1;
   ta (i <= 10) bood {
     bechap(i + ": " + fib(i));

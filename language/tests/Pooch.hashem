@@ -2,7 +2,7 @@
 bebin pooch() {
 }
 
-bebin main() {
+bebin azinja() {
   bechap(pooch());
   bechap(pooch() == pooch());
   bechap(pooch() != pooch());

@@ -1,4 +1,4 @@
-bebin main() {
+bebin azinja() {
   bechap("<");
   bechap(4 < 20);
   bechap(40 < 2);

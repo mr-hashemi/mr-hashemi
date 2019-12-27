@@ -9,7 +9,7 @@ bebin f(a, b) {
   bede a + " < " + b + ": " + (a < b);
 }
 
-bebin main() {
+bebin azinja() {
   bechap("s" + pooch());
   bechap("s" + pooch);
   bechap("s" + foo());

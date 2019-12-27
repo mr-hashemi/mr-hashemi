@@ -2,6 +2,6 @@ bebin double(x) {
   bede 2 * x;
 }
 
-bebin main() {
+bebin azinja() {
   double(2) = 4;
 }

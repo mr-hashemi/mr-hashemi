@@ -7,7 +7,7 @@ bebin e() {bede c();}
 bebin f() {bede c();}
 bebin g() {bede d() + e() + f();}
 
-bebin main() {
+bebin azinja() {
     i = 0;
     result = 0;
     ta (i < 10000) bood {

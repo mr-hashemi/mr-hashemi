@@ -1,7 +1,7 @@
 bebin foo() {}
 bebin bar() {}
 
-bebin main() {
+bebin azinja() {
   foo();
   age (1 < 2) bood{
     bar();
