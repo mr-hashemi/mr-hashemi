@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>ninja.soroosh.mr-hashemi</groupId>
@@ -15,7 +16,10 @@
             </activation>
             <properties>
                 <jar.dir>${project.build.directory}/jars</jar.dir>
-                <test.argLine>--upgrade-module-path='${jar.dir}/truffle-api.jar' --add-opens org.graalvm.sdk/org.graalvm.polyglot=ALL-UNNAMED --add-exports java.base/jdk.internal.module=ALL-UNNAMED</test.argLine>
+                <test.argLine>--upgrade-module-path='${jar.dir}/truffle-api.jar' --add-opens
+                    org.graalvm.sdk/org.graalvm.polyglot=ALL-UNNAMED --add-exports
+                    java.base/jdk.internal.module=ALL-UNNAMED
+                </test.argLine>
             </properties>
             <build>
                 <plugins>
@@ -141,6 +145,11 @@
             <groupId>org.antlr</groupId>
             <artifactId>antlr4-runtime</artifactId>
             <version>4.7</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.9.9</version>
         </dependency>
     </dependencies>
 </project>
