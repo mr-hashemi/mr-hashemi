@@ -5,11 +5,12 @@
 
 Other languages are just too difficult. Ask Mr. Hashemi to do the job right for you!
 
+
 ![Hashemi's Familiy](hashemi-logo.jpg) 
 
 
 
-Mr. Hashemi is a *National* programming language.
+Mr. Hashemi is a *National* programming language, a fork from [SimpleLanguage](https://github.com/graalvm/simplelanguage). 
 We hope Mr. Hashemi get enough attention to make bilions of tomans out of this project.  
 
 **example:**
