@@ -10,7 +10,7 @@ We hope Mr. Hashemi get enough attention to make bilions of tomans out of this p
 
 **example:**
 ```java
-bebin main() {
+bebin azinja() {
   i = 0;
   ta (i<1) bood {
     bechap("adad bede");
