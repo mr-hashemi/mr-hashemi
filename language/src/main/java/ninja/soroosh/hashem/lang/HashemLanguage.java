@@ -72,7 +72,7 @@ public final class HashemLanguage extends TruffleLanguage<HashemContext> {
         } else {
             Source requestedSource = request.getSource();
             StringBuilder sb = new StringBuilder();
-            sb.append("bebin main(");
+            sb.append("bebin azinja(");
             String sep = "";
             for (String argumentName : request.getArgumentNames()) {
                 sb.append(sep);
@@ -87,7 +87,7 @@ public final class HashemLanguage extends TruffleLanguage<HashemContext> {
             functions = HashemLanguageParser.parseHashemiLang(this, decoratedSource);
         }
 
-        RootCallTarget main = functions.get("main");
+        RootCallTarget main = functions.get("azinja");
         RootNode evalMain;
         if (main != null) {
             /*

@@ -63,10 +63,20 @@ public final class HashemiMain {
 
         try {
             Value result = context.eval(source);
-            if (context.getBindings(HASHEMI).getMember("main") == null) {
-                err.println("No bebin main() defined in Hashemi source file.");
+            final Value bindings = context.getBindings(HASHEMI);
+            final boolean hasMainFunction = bindings.getMemberKeys().contains("main");
+            final boolean hasAzinjaFunction = bindings.getMemberKeys().contains("azinja");
+
+            if (!hasAzinjaFunction) {
+                if (!hasMainFunction) {
+                    err.println("No bebin azinja() defined in Hashemi source file.");
+                    return 1;
+                }
+                err.println("bebin main() is senseless, Please change the starting bebin to \"azinja\".");
                 return 1;
             }
+
+
             if (!result.isNull()) {
                 out.println(result.toString());
             }
