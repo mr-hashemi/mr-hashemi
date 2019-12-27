@@ -22,7 +22,7 @@ bebin f5() {
   bechap("f5");
 }
 
-bebin main() {
+bebin azinja() {
   invoke(f1);
   invoke(f2);
   invoke(f3);

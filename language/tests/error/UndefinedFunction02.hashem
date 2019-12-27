@@ -6,7 +6,7 @@ bebin f1() {
   bechap("f1");
 }
 
-bebin main() {
+bebin azinja() {
   invoke(f1);
   invoke(foo);  
 }  

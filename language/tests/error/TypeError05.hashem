@@ -1,4 +1,4 @@
-bebin main() {
+bebin azinja() {
   f = 1 < 2;
   f();  
 }  

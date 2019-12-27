@@ -1,4 +1,4 @@
-bebin main() {
+bebin azinja() {
   obj1 = jadid();
   obj1["x"] = 42;
   bechap(obj1["x"]);

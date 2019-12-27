@@ -24,7 +24,7 @@ public class HashemInteropPrimitiveTest {
 
     @Test
     public void testBoolean() {
-        final Source src = Source.newBuilder("hashemi", "bebin testBoolean(a,b) {bede a == b;} bebin main() {bede testBoolean;}", "testBoolean.hashem").buildLiteral();
+        final Source src = Source.newBuilder("hashemi", "bebin testBoolean(a,b) {bede a == b;} bebin azinja() {bede testBoolean;}", "testBoolean.hashem").buildLiteral();
         final Value fnc = context.eval(src);
         Assert.assertTrue(fnc.canExecute());
         fnc.execute(true, false);
@@ -32,7 +32,7 @@ public class HashemInteropPrimitiveTest {
 
     @Test
     public void testChar() {
-        final Source src = Source.newBuilder("hashemi", "bebin testChar(a,b) {bede a == b;} bebin main() {bede testChar;}", "testChar.hashem").buildLiteral();
+        final Source src = Source.newBuilder("hashemi", "bebin testChar(a,b) {bede a == b;} bebin azinja() {bede testChar;}", "testChar.hashem").buildLiteral();
         final Value fnc = context.eval(src);
         Assert.assertTrue(fnc.canExecute());
         fnc.execute('a', 'b');

@@ -83,7 +83,7 @@ public class HashemInstrumentTest {
                 "  bechap(b);\n" +
                 "  bechap(a);\n" +     // 20
                 "}\n" +
-                "bebin main() {\n" +
+                "bebin azinja() {\n" +
                 "  test(\"n_n\");\n" +
                 "}";
         Source source = Source.newBuilder("hashemi", code, "testing").build();
@@ -377,7 +377,7 @@ public class HashemInstrumentTest {
             case 22:
             case 23:
                 for (Scope ls : lexicalScopes) {
-                    checkRootNode(ls, "main", frame);
+                    checkRootNode(ls, "azinja", frame);
                     TruffleObject arguments = (TruffleObject) ls.getArguments();
                     checkVars(arguments);
                     TruffleObject variables = (TruffleObject) ls.getVariables();
@@ -387,7 +387,7 @@ public class HashemInstrumentTest {
                 assertEquals("LexicalScope depth", 1, depth);
                 depth = 0;
                 for (Scope ls : dynamicScopes) {
-                    checkRootNode(ls, "main", frame);
+                    checkRootNode(ls, "azinja", frame);
                     TruffleObject arguments = (TruffleObject) ls.getArguments();
                     checkVars(arguments);
                     TruffleObject variables = (TruffleObject) ls.getVariables();
@@ -458,7 +458,7 @@ public class HashemInstrumentTest {
 
     @Test
     public void testOutput() throws IOException {
-        String code = "bebin main() {\n" +
+        String code = "bebin azinja() {\n" +
                 "  f = fac(5);\n" +
                 "  bechap(f);\n" +
                 "}\n" +
@@ -548,7 +548,7 @@ public class HashemInstrumentTest {
      */
     @Test
     public void testRedoIO() throws Throwable {
-        String code = "bebin main() {\n" +
+        String code = "bebin azinja() {\n" +
                 "  a = bekhoon();\n" +
                 "  bede a;\n" +
                 "}\n";
@@ -649,7 +649,7 @@ public class HashemInstrumentTest {
      */
     @Test
     public void testEarlyReturn() throws Exception {
-        String code = "bebin main() {\n" +
+        String code = "bebin azinja() {\n" +
                 "  a = 10;\n" +
                 "  b = a;\n" +
                 "  // Let fce() warm up and specialize:\n" +
@@ -775,7 +775,7 @@ public class HashemInstrumentTest {
 //        if (System.getProperty("java.vm.name").contains("Graal:graal-enterprise")) {
 //            return; // GR-16755
 //        }
-//        String code = "bebin main() {\n" +
+//        String code = "bebin azinja() {\n" +
 //                        "  a = jadid();\n" +
 //                        "  b = a.rp1;\n" +
 //                        "  return b;\n" +
@@ -897,7 +897,7 @@ public class HashemInstrumentTest {
      */
     @Test
     public void testChangeArgumentsOnReenter() throws Exception {
-        String code = "bebin main() {\n" +
+        String code = "bebin azinja() {\n" +
                 "  y = fce(0, 10000);\n" +
                 "  bede y;\n" +
                 "}\n" +

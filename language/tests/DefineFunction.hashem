@@ -2,7 +2,7 @@ bebin foo() {
   bechap(test(40, 2));
 }
 
-bebin main() {
+bebin azinja() {
   defineFunction("bebin test(a, b) { bede a + b; }");
   foo();
 

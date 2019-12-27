@@ -59,7 +59,7 @@ public class HashemSharedCodeSeparatedEnvTest {
     public void shareCodeUseDifferentOutputStreams() throws Exception {
 
         String sayHello =
-            "bebin main() {\n" +
+            "bebin azinja() {\n" +
             "  bekhoon(\"Ahoj\" + import(\"extra\"));" +
             "}";
         // @formatter:on
@@ -79,7 +79,7 @@ public class HashemSharedCodeSeparatedEnvTest {
         ByteArrayOutputStream outConsumer = outInstr.lookup(ByteArrayOutputStream.class);
         assertNotNull("Stream capturing is ready", outConsumer);
 
-        String sayHello = "bebin main() {\n" +
+        String sayHello = "bebin azinja() {\n" +
                         "  bekhoon(\"Ahoj\" + import(\"extra\"));" +
                         "}";
         // @formatter:on

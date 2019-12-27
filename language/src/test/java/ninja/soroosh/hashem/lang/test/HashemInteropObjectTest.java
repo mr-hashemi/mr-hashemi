@@ -27,7 +27,7 @@ public class HashemInteropObjectTest {
 
     @Test
     public void testObject() {
-        final Source src = Source.newBuilder("hashemi", "bebin main() {o = jadid(); o.a = 10; o.b = \"B\"; bede o;}", "testObject.hashem").buildLiteral();
+        final Source src = Source.newBuilder("hashemi", "bebin azinja() {o = jadid(); o.a = 10; o.b = \"B\"; bede o;}", "testObject.hashem").buildLiteral();
         final Value obj = context.eval(src);
         Assert.assertTrue(obj.hasMembers());
 

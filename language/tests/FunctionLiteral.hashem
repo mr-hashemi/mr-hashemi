@@ -10,7 +10,7 @@ bebin foo(f) {
   bechap(f(40, 2));
 }
 
-bebin main() {
+bebin azinja() {
   foo(add);
   foo(sub);
 }  
