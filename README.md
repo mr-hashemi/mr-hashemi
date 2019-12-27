@@ -1,5 +1,11 @@
 # Mr. Hashemi Language
 
+> **Disclaimer**
+>
+> The contents of this repository built upon a clone of [graalvm/simplelanguage](https://github.com/graalvm/simplelanguage). repo
+>
+> commit: `15521b96322e5cdfe4d75c07334465e9d4a13a41`
+
 Other languages are just too difficult. Ask Mr. Hashemi to do the job right for you!
 
 ![alt text](hashemi-logo.jpg) 
