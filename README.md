@@ -1,8 +1,10 @@
 # Mr. Hashemi Language
 
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmr-hashemi%2Fmr-hashemi.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmr-hashemi%2Fmr-hashemi?ref=badge_shield)
+
 Other languages are just too difficult. Ask Mr. Hashemi to do the job right for you!
 
-![alt text](hashemi-logo.jpg) [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmr-hashemi%2Fmr-hashemi.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmr-hashemi%2Fmr-hashemi?ref=badge_shield)
+![Hashemi's Familiy](hashemi-logo.jpg) 
 
 
 
