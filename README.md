@@ -1,14 +1,12 @@
 # Mr. Hashemi Language
 
-> **Disclaimer**
->
-> The contents of this repository built upon a clone of [graalvm/simplelanguage](https://github.com/graalvm/simplelanguage). repo
->
-> commit: `15521b96322e5cdfe4d75c07334465e9d4a13a41`
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmr-hashemi%2Fmr-hashemi.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmr-hashemi%2Fmr-hashemi?ref=badge_shield)
+
 
 Other languages are just too difficult. Ask Mr. Hashemi to do the job right for you!
 
-![alt text](hashemi-logo.jpg) 
+![Hashemi's Familiy](hashemi-logo.jpg) 
+
 
 
 Mr. Hashemi is a *National* programming language.
@@ -66,3 +64,7 @@ The usual `if (condition) {code}` conditions definition is defined as `age (shar
 	- chiz.sen = 33;
 ### logical operators:
 Basically like java you can find the list [here](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/opsummary.html) .
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmr-hashemi%2Fmr-hashemi.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmr-hashemi%2Fmr-hashemi?ref=badge_large)
