@@ -11,7 +11,7 @@ permalink: /variables/
 {% highlight bash %}
 nam = "Mr ";
 famil = "Hashemi";  
-tedadeBacheha = 3;  
+tedadeBache = 3;  
 moteahel = 1==1;
 mabda = "Kazeroon";  
 maghsad = "Neishaboor";
