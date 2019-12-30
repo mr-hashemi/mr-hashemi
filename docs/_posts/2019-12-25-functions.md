@@ -75,15 +75,15 @@ n! = n * (n-1)!     (otherwise)
 پیاده سازی کد بازگشتی فاکتوریل در زبان برنامه نویسی آقای هاشمی :
 
 {% highlight java %}
-bebin factoriyel(n) {
+bebin factorial(n) {
    age (n < 1) bood {
       bede 1;
    }
-   bede factoriyel(n-1) * n;
+   bede factorial(n-1) * n;
 }
 
 bebin azinja() {
-    f = factoriyel(10);
+    f = factorial(10);
     bechap(f);
 }
 {% endhighlight %} 
@@ -91,7 +91,7 @@ bebin azinja() {
 خروجی: 
 
 {% highlight bash %}
-user@hashemi-lang-pc $ hashemi ./factoriyel.hashem
+user@hashemi-lang-pc $ hashemi ./factorial.hashem
 3628800
 user@hashemi-lang-pc $
 {% endhighlight %}
@@ -104,19 +104,19 @@ user@hashemi-lang-pc $
 
 ![image](https://wikimedia.org/api/rest_v1/media/math/render/svg/3221a94c3c11b3dd8417d1db9005d0a7303c07dd)
 
-اما در این فرمول سه بار از فاکتوریل استفاده شده است و ما در یک تابع جدید، تنها کافی است سه بار تابع `factoriyel` مثال قبلی را فراخوانی کنیم
+اما در این فرمول سه بار از فاکتوریل استفاده شده است و ما در یک تابع جدید، تنها کافی است سه بار تابع `factorial` مثال قبلی را فراخوانی کنیم
 
 {% highlight java %}
-bebin factoriyel(n) {
+bebin factorial(n) {
    age (n < 1) bood {
       bede 1;
    }
-   bede factoriyel(n-1) * n;
+   bede factorial(n-1) * n;
 }
 
 bebin tarkib(k, n) {
-    soorat = factoriyel(n);
-    makhraj = factoriyel(k) * factoriyel(n-k);
+    soorat = factorial(n);
+    makhraj = factorial(k) * factorial(n-k);
     javab = soorat / makhraj;
     bede javab;
 }
