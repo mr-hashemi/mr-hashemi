@@ -5,11 +5,12 @@
 
 Other languages are just too difficult. Ask Mr. Hashemi to do the job right for you!
 
+
 ![Hashemi's Familiy](hashemi-logo.jpg) 
 
 
 
-Mr. Hashemi is a *National* programming language.
+Mr. Hashemi is a *National* programming language, a fork from [SimpleLanguage](https://github.com/graalvm/simplelanguage). 
 We hope Mr. Hashemi get enough attention to make bilions of tomans out of this project.  
 
 **example:**
@@ -44,9 +45,9 @@ bebin derakht(n){
 ## Basic syntax:  
 ### Functions:  
 - Declare a function by keyword `bebin` before function name.  
-- Program starts from main function.  
+- Program starts from `azinja` function.  
 - to call a function simply call it.  
-in example above the functions `main` and `derakht` are defined and function `derakht` is called inside main.
+in example above the functions `azinja` and `derakht` are defined and function `derakht` is called inside `azinja`.
 
 ### Loops:  
 The usual `while (condition) {code}` loop is defined as `ta (shart) bood {code}` .  

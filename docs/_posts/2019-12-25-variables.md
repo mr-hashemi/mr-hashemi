@@ -11,12 +11,12 @@ permalink: /variables/
 {% highlight bash %}
 nam = "Mr ";
 famil = "Hashemi";  
-tedadeBacheha = 3;  
+tedadeBache = 3;  
 moteahel = 1==1;
 mabda = "Kazeroon";  
 maghsad = "Neishaboor";
   
-bechap("Aghaye "+nam+famil+", "+tedadeBacheha+" farzand darad.");
+bechap("Aghaye "+nam+famil+", "+tedadeBache+" farzand darad.");
 // => ke chap khahad kard "Aghaye Mr Hashemi, 3 farzand darad."  
 {% endhighlight %} 
 
