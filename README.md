@@ -45,9 +45,9 @@ bebin derakht(n){
 ## Basic syntax:  
 ### Functions:  
 - Declare a function by keyword `bebin` before function name.  
-- Program starts from main function.  
+- Program starts from `azinja` function.  
 - to call a function simply call it.  
-in example above the functions `main` and `derakht` are defined and function `derakht` is called inside main.
+in example above the functions `azinja` and `derakht` are defined and function `derakht` is called inside `azinja`.
 
 ### Loops:  
 The usual `while (condition) {code}` loop is defined as `ta (shart) bood {code}` .  
