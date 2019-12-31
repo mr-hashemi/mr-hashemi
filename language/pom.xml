@@ -7,6 +7,9 @@
         <version>19.3.0-SNAPSHOT</version>
     </parent>
     <artifactId>hashemilang</artifactId>
+    <properties>
+        <sonar.moduleKey>${artifactId}</sonar.moduleKey>
+    </properties>
     <profiles>
         <profile>
             <id>jdk11-graalvm</id>
