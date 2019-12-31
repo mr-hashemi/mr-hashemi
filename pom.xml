@@ -8,6 +8,10 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <m2e.apt.activation>jdt_apt</m2e.apt.activation>
     <graalvm.version>19.3.0</graalvm.version>
+    <sonar.projectKey>mr-hashemi_mr-hashemi</sonar.projectKey>
+    <sonar.organization>mr-hashemi</sonar.organization>
+    <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+    <sonar.login>${env.SONAR_LOGIN}</sonar.login>
   </properties>
   <packaging>pom</packaging>
   <modules>
