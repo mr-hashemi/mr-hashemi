@@ -66,6 +66,12 @@ The usual `if (condition) {code}` conditions definition is defined as `age (shar
 ### logical operators:
 Basically like java you can find the list [here](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/opsummary.html) .
 
+## Installation
+### Arch Linux
+
+```
+yay -S hashem
+```
 
 ## License
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmr-hashemi%2Fmr-hashemi.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmr-hashemi%2Fmr-hashemi?ref=badge_large)
