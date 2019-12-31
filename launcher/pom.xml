@@ -8,6 +8,11 @@
 
   </parent>
   <artifactId>launcher</artifactId>
+  <properties>
+        <sonar.moduleKey>
+        ${artifactId}
+    </sonar.moduleKey>
+  </properties>
   <build>
     <plugins>
       <plugin>
