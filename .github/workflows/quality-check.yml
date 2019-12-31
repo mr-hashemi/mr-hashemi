@@ -17,5 +17,5 @@ jobs:
     - uses: actions/checkout@v1
     - name: Sonar
       env:
-        SONAR_LOGIN: ${seceets.SONAR_LOGIN}
+        SONAR_LOGIN: ${{ secrets.SONAR_LOGIN }}
       run: mvn verify sonar:sonar
