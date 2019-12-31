@@ -12,6 +12,9 @@
         <clean.native.path>${basedir}/clean_native.sh</clean.native.path>
     </properties>
     <packaging>pom</packaging>
+    <properties>
+        <sonar.moduleKey>${artifactId}</sonar.moduleKey>
+    </properties>
 
     <profiles>
         <profile>
