@@ -10,11 +10,9 @@
         <m2e.apt.activation>jdt_apt</m2e.apt.activation>
         <make.native.path>${basedir}/make_native.sh</make.native.path>
         <clean.native.path>${basedir}/clean_native.sh</clean.native.path>
-    </properties>
-    <packaging>pom</packaging>
-    <properties>
         <sonar.moduleKey>${artifactId}</sonar.moduleKey>
     </properties>
+    <packaging>pom</packaging>
 
     <profiles>
         <profile>
