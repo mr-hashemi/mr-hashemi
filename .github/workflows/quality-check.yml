@@ -1,0 +1,21 @@
+name: Quality Check
+
+on:
+  push:
+    braches: 
+    - master
+
+jobs:
+  quality-check:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: DeLaGuardo/setup-graalvm@2.0
+      with:
+        graalvm-version: '19.3.0.java8'
+
+    - run: gu install native-image
+    - uses: actions/checkout@v1
+    - name: Sonar
+      env:
+        SONAR_LOGIN: ${seceets.SONAR_LOGIN}
+      run: mvn verify sonar:sonar
