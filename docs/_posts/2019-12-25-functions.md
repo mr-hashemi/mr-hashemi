@@ -57,14 +57,14 @@ user@hashemi-lang-pc $
 {% endhighlight %}
 
 
-## توبع بازگشتی
+## توابع بازگشتی
 
 توابع بازگشتی یا recursive به توابعی گفته می‌شود که خودشان را صدا می‌زنند. 
 در ریاضیات از این حالت برای تعریف تابع
  [فاکتوریل](https://fa.wikipedia.org/wiki/%D9%81%D8%A7%DA%A9%D8%AA%D9%88%D8%B1%DB%8C%D9%84)
   و یا برای 
   [نمایش سری فیبوناچی ](https://fa.wikipedia.org/wiki/%D8%A7%D8%B9%D8%AF%D8%A7%D8%AF_%D9%81%DB%8C%D8%A8%D9%88%D9%86%D8%A7%DA%86%DB%8C)
-  ااستفاده می‌شود. 
+  استفاده می‌شود. 
 
 
 {% highlight math %}
@@ -104,7 +104,7 @@ user@hashemi-lang-pc $
 
 ![image](https://wikimedia.org/api/rest_v1/media/math/render/svg/3221a94c3c11b3dd8417d1db9005d0a7303c07dd)
 
-اما در این فرمول سه بار از فاکتوریل استفاده شده است و ما در یک تابع جدید، تنها کافی است سه بار تابع `factorial` مثال قبلی را فراخوانی کنیم
+اما در این فرمول سه بار از فاکتوریل استفاده شده است و ما در یک تابع جدید، تنها کافی است سه بار تابع `factorial` مثال قبلی را  فراخوانی کنیم
 
 {% highlight java %}
 bebin factorial(n) {
