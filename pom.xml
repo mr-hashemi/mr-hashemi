@@ -62,9 +62,25 @@
         <module>language</module>
         <module>launcher</module>
         <module>native</module>
+        <module>test-report</module>
     </modules>
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>nl.deholtmans</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>1.0-SNAPSHOT</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.19.1</version>
+            </plugin>
+
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
