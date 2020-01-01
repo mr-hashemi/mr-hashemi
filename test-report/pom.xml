@@ -42,64 +42,67 @@
   ~  */
   -->
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>ninja.soroosh.mr-hashemi</groupId>
-    <artifactId>native</artifactId>
-    <version>19.3.0-SNAPSHOT</version>
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <m2e.apt.activation>jdt_apt</m2e.apt.activation>
-        <make.native.path>${basedir}/make_native.sh</make.native.path>
-        <clean.native.path>${basedir}/clean_native.sh</clean.native.path>
-        <sonar.moduleKey>${project.artifactId}</sonar.moduleKey>
-    </properties>
-    <packaging>pom</packaging>
 
-    <profiles>
-        <profile>
-            <id>windows</id>
-            <activation>
-                <os>
-                    <family>windows</family>
-                </os>
-            </activation>
-            <properties>
-                <make.native.path>${basedir}/make_native.bat</make.native.path>
-                <clean.native.path>${basedir}/clean_native.bat</clean.native.path>
-            </properties>
-        </profile>
-    </profiles>
+    <groupId>ninja.soroosh.mr-hashemi</groupId>
+    <artifactId>test-report</artifactId>
+    <version>19.3.0-SNAPSHOT</version>
+
+    <properties>
+        <code.coverage.project.folder>${basedir}/../</code.coverage.project.folder>
+        <code.coverage.overall.data.folder>${basedir}/../target/aggregate.exec</code.coverage.overall.data.folder>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>ninja.soroosh.mr-hashemi</groupId>
+            <artifactId>hashemilang</artifactId>
+            <version>${version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ninja.soroosh.mr-hashemi</groupId>
+            <artifactId>launcher</artifactId>
+            <version>${version}</version>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>
             <plugin>
-                <artifactId>exec-maven-plugin</artifactId>
-                <groupId>org.codehaus.mojo</groupId>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>make_native</id>
-                        <phase>package</phase>
+                        <id>report-aggregate</id>
+                        <phase>verify</phase>
                         <goals>
-                            <goal>exec</goal>
+                            <goal>report-aggregate</goal>
                         </goals>
-                        <configuration>
-                            <executable>${make.native.path}</executable>
-                        </configuration>
                     </execution>
                     <execution>
-                        <id>clean_native</id>
-                        <phase>clean</phase>
+                        <id>merge-results</id>
+                        <phase>verify</phase>
                         <goals>
-                            <goal>exec</goal>
+                            <goal>merge</goal>
                         </goals>
                         <configuration>
-                            <executable>${clean.native.path}</executable>
+                            <fileSets>
+                                <fileSet>
+                                    <directory>${code.coverage.project.folder}</directory>
+                                    <includes>
+                                        <include>**/target/jacoco.exec</include>
+                                    </includes>
+                                </fileSet>
+                            </fileSets>
+                            <destFile>${code.coverage.overall.data.folder}/aggregate.exec</destFile>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
         </plugins>
     </build>
+
 </project>
