@@ -2,7 +2,7 @@ name: Quality Check
 
 on:
   push:
-    braches: 
+    branches: 
     - master
 
 jobs:
