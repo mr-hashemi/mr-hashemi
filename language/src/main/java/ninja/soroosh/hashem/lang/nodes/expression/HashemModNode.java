@@ -63,6 +63,24 @@ public abstract class HashemModNode extends HashemBinaryNode {
         return result;
     }
 
+    @Specialization(rewriteOn = ArithmeticException.class)
+    protected float mod(float left, float right) {
+        float result = left % right;
+        return result;
+    }
+
+    @Specialization(rewriteOn = ArithmeticException.class)
+    protected float mod(long left, float right) {
+        float result = left % right;
+        return result;
+    }
+
+    @Specialization(rewriteOn = ArithmeticException.class)
+    protected float mod(float left, long right) {
+        float result = left % right;
+        return result;
+    }
+
     @Specialization
     @TruffleBoundary
     protected HashemBigNumber mod(HashemBigNumber left, HashemBigNumber right) {
