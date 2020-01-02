@@ -10,4 +10,7 @@ bebin azinja() {
   bechap(e(1==2, 1==2));
   bechap(e(1==2, 1));
   bechap(e(e, e));
-}  
+  bechap(e(1.0, 1.0));
+  bechap(e(1, 1.0));
+  bechap(e(1.0, 1));
+}
