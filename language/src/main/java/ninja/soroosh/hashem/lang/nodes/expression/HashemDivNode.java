@@ -67,6 +67,20 @@ public abstract class HashemDivNode extends HashemBinaryNode {
     }
 
     @Specialization(rewriteOn = ArithmeticException.class)
+    @TruffleBoundary
+    protected float div(float left, long right) throws ArithmeticException {
+        float result = left / right;
+        return result;
+    }
+
+    @Specialization(rewriteOn = ArithmeticException.class)
+    @TruffleBoundary
+    protected float div(long left, float right) throws ArithmeticException {
+        float result = left / right;
+        return result;
+    }
+
+    @Specialization(rewriteOn = ArithmeticException.class)
     protected long div(long left, long right) throws ArithmeticException {
         long result = left / right;
         /*
@@ -83,7 +97,6 @@ public abstract class HashemDivNode extends HashemBinaryNode {
     protected HashemBigNumber div(HashemBigNumber left, HashemBigNumber right) {
         return new HashemBigNumber(left.getValue().divide(right.getValue()));
     }
-
 
 
     @Fallback

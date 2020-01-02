@@ -67,6 +67,16 @@ public abstract class HashemMulNode extends HashemBinaryNode {
         return left * right;
     }
 
+    @Specialization(rewriteOn = ArithmeticException.class)
+    protected float mul(float left, long right) {
+        return left * right;
+    }
+
+    @Specialization(rewriteOn = ArithmeticException.class)
+    protected float mul(long left, float right) {
+        return left * right;
+    }
+
     @Specialization
     @TruffleBoundary
     protected HashemBigNumber mul(HashemBigNumber left, HashemBigNumber right) {

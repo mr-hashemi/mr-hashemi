@@ -87,9 +87,20 @@ public abstract class HashemAddNode extends HashemBinaryNode {
     }
 
     @Specialization(rewriteOn = ArithmeticException.class)
+    protected float add(float left, long right) {
+        return left + right;
+    }
+
+    @Specialization(rewriteOn = ArithmeticException.class)
+    protected float add(long left, float right) {
+        return left + right;
+    }
+
+    @Specialization(rewriteOn = ArithmeticException.class)
     protected long add(long left, long right) {
         return Math.addExact(left, right);
     }
+
 
     /**
      * This is the slow path of the arbitrary-precision arithmetic. The {@link HashemBigNumber} type of
