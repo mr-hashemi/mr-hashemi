@@ -87,5 +87,4 @@ public abstract class HashemSubNode extends HashemBinaryNode {
     protected Object typeError(Object left, Object right) {
         throw HashemException.typeError(this, left, right);
     }
-
 }
