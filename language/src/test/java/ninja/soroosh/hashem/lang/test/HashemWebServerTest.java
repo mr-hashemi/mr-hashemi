@@ -50,20 +50,20 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
-import com.fasterxml.jackson.databind.node.IntNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.graalvm.polyglot.Context;
 import org.graalvm.polyglot.HostAccess;
 import org.graalvm.polyglot.Value;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
 import java.util.HashMap;
 
 
-//@Ignore
+@Ignore
 public class HashemWebServerTest {
 
     private Context context;
@@ -166,12 +166,8 @@ public class HashemWebServerTest {
                 throws IOException, JsonProcessingException {
             JsonNode node = jp.getCodec().readTree(jp);
             if (node instanceof ObjectNode) {
-                ctxt.des
                 ((ObjectNode) node).elements();
-
             }
-
-
             return new JsonMap();
         }
     }
