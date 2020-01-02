@@ -62,6 +62,11 @@ public abstract class HashemSubNode extends HashemBinaryNode {
         return Math.subtractExact(left, right);
     }
 
+    @Specialization(rewriteOn = ArithmeticException.class)
+    protected float sub(float left, float right) {
+        return left - right;
+    }
+
     @Specialization
     @TruffleBoundary
     protected HashemBigNumber sub(HashemBigNumber left, HashemBigNumber right) {

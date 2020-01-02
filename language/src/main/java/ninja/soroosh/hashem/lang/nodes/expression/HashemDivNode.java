@@ -53,11 +53,18 @@ import ninja.soroosh.hashem.lang.runtime.HashemBigNumber;
 
 /**
  * This class is similar to the extensively documented {@link HashemAddNode}. Divisions by 0 throw the
- * same {@link ArithmeticException exception} as in Java,Hashemihas no special handling for it to keep
+ * same {@link ArithmeticException exception} as in Java,Hashemi has no special handling for it to keep
  * the code simple.
  */
 @NodeInfo(shortName = "/")
 public abstract class HashemDivNode extends HashemBinaryNode {
+
+    @Specialization(rewriteOn = ArithmeticException.class)
+    @TruffleBoundary
+    protected float div(float left, float right) throws ArithmeticException {
+        float result = left / right;
+        return result;
+    }
 
     @Specialization(rewriteOn = ArithmeticException.class)
     protected long div(long left, long right) throws ArithmeticException {
@@ -76,6 +83,8 @@ public abstract class HashemDivNode extends HashemBinaryNode {
     protected HashemBigNumber div(HashemBigNumber left, HashemBigNumber right) {
         return new HashemBigNumber(left.getValue().divide(right.getValue()));
     }
+
+
 
     @Fallback
     protected Object typeError(Object left, Object right) {

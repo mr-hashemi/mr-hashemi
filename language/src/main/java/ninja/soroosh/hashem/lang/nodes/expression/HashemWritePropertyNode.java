@@ -96,7 +96,7 @@ public abstract class HashemWritePropertyNode extends HashemExpressionNode {
         try {
             objectLibrary.writeMember(receiver, asMember.execute(name), value);
         } catch (UnsupportedMessageException | UnknownIdentifierException | UnsupportedTypeException e) {
-            // write was not successful. InHashemiwe only have basic support for errors.
+            // write was not successful. In Hashemi we only have basic support for errors.
             throw HashemUndefinedNameException.undefinedProperty(this, name);
         }
         return value;

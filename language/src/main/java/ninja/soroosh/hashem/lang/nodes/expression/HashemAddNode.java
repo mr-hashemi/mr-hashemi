@@ -54,7 +54,7 @@ import ninja.soroosh.hashem.lang.nodes.HashemTypes;
 import ninja.soroosh.hashem.lang.runtime.HashemBigNumber;
 
 /**
- *Hashemi node that performs the "+" operation, which performs addition on arbitrary precision numbers,
+ * Hashemi node that performs the "+" operation, which performs addition on arbitrary precision numbers,
  * as well as String concatenation if one of the operands is a String.
  * <p>
  * Type specialization on the input values is essential for the performance. This is achieved via
@@ -81,6 +81,11 @@ public abstract class HashemAddNode extends HashemBinaryNode {
      * This specialization is automatically selected by the Truffle DSL if both the left and right
      * operand are {@code long} values.
      */
+    @Specialization(rewriteOn = ArithmeticException.class)
+    protected float add(float left, float right) {
+        return left + right;
+    }
+
     @Specialization(rewriteOn = ArithmeticException.class)
     protected long add(long left, long right) {
         return Math.addExact(left, right);

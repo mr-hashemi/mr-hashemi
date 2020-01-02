@@ -73,6 +73,11 @@ public abstract class HashemEqualNode extends HashemBinaryNode {
     }
 
     @Specialization
+    protected boolean equal(float left, float right) {
+        return left == right;
+    }
+
+    @Specialization
     @TruffleBoundary
     protected boolean equal(HashemBigNumber left, HashemBigNumber right) {
         return left.equals(right);

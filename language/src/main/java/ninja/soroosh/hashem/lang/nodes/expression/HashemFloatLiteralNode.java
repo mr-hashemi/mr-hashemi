@@ -1,6 +1,6 @@
 /*
  *
- *  * Copyright (c) 2012, 2018, Oracle and/or its affiliates. All rights reserved.
+ *  * Copyright (c) 2012, 2018, mr-hashemi. All rights reserved.
  *  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *  *
  *  * The Universal Permissive License (UPL), Version 1.0
@@ -43,40 +43,32 @@
 
 package ninja.soroosh.hashem.lang.nodes.expression;
 
-import com.oracle.truffle.api.CompilerDirectives.TruffleBoundary;
-import com.oracle.truffle.api.dsl.Fallback;
-import com.oracle.truffle.api.dsl.Specialization;
+import com.oracle.truffle.api.frame.VirtualFrame;
 import com.oracle.truffle.api.nodes.NodeInfo;
-import ninja.soroosh.hashem.lang.HashemException;
-import ninja.soroosh.hashem.lang.nodes.HashemBinaryNode;
-import ninja.soroosh.hashem.lang.runtime.HashemBigNumber;
+import com.oracle.truffle.api.nodes.UnexpectedResultException;
+import ninja.soroosh.hashem.lang.nodes.HashemExpressionNode;
 
 /**
- * This class is similar to the extensively documented {@link HashemAddNode}.
+ * Constant literal for a primitive {@code float} value. The unboxed value can be returned when the
+ * parent expects a float value and calls {@link HashemFloatLiteralNode#executeFloat}. In the generic case,
+ * the primitive value is automatically boxed by Java.
  */
-@NodeInfo(shortName = "%")
-public abstract class HashemModNode extends HashemBinaryNode {
+@NodeInfo(shortName = "const")
+public final class HashemFloatLiteralNode extends HashemExpressionNode {
 
-    @Specialization(rewriteOn = ArithmeticException.class)
-    protected long mod(long left, long right) {
-        long result = left % right;
-        return result;
+    private final float value;
+
+    public HashemFloatLiteralNode(float value) {
+        this.value = value;
     }
 
-    @Specialization(rewriteOn = ArithmeticException.class)
-    protected float mod(float left, float right) {
-        float result = left % right;
-        return result;
+    @Override
+    public float executeFloat(VirtualFrame frame) throws UnexpectedResultException {
+        return value;
     }
 
-    @Specialization
-    @TruffleBoundary
-    protected HashemBigNumber mod(HashemBigNumber left, HashemBigNumber right) {
-        return new HashemBigNumber(left.getValue().mod(right.getValue()));
-    }
-
-    @Fallback
-    protected Object typeError(Object left, Object right) {
-        throw HashemException.typeError(this, left, right);
+    @Override
+    public Object executeGeneric(VirtualFrame frame) {
+        return value;
     }
 }
