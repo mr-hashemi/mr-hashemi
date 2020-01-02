@@ -40,51 +40,40 @@
  *  * SOFTWARE.
  *
  */
+package ninja.soroosh.hashem.lang.lib.json.builtins;
 
-package ninja.soroosh.hashem.lang.lib.json;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.oracle.truffle.api.dsl.CachedContext;
+import com.oracle.truffle.api.dsl.Specialization;
+import com.oracle.truffle.api.nodes.NodeInfo;
+import ninja.soroosh.hashem.lang.HashemException;
+import ninja.soroosh.hashem.lang.HashemLanguage;
+import ninja.soroosh.hashem.lang.builtins.HashemBuiltinNode;
+import ninja.soroosh.hashem.lang.lib.json.JsonObject;
+import ninja.soroosh.hashem.lang.runtime.HashemContext;
 
-import com.oracle.truffle.api.interop.InteropLibrary;
-import com.oracle.truffle.api.interop.TruffleObject;
-import com.oracle.truffle.api.library.ExportLibrary;
-import com.oracle.truffle.api.library.ExportMessage;
-import ninja.soroosh.hashem.lang.runtime.HashemPooch;
+import java.io.IOException;
+import java.util.HashMap;
 
+/**
+ * Builtin function that can turn a json string into Mr. Hashemi's objects.
+ */
+@NodeInfo(shortName = "json")
+public abstract class HashemJsonBuiltin extends HashemBuiltinNode {
 
-import java.util.Map;
+    // TODO: move to the context to boost speed
+    private ObjectMapper objectMapper = new ObjectMapper();
 
-@ExportLibrary(InteropLibrary.class)
-@SuppressWarnings("static-method")
-public class JsonObject implements TruffleObject {
-    private Map<String, Object> fields;
-
-    public JsonObject(Map map) {
-        this.fields = map;
-    }
-
-    @ExportMessage
-    final Object readMember(@SuppressWarnings("unused") String member) {
-        final Object field = fields.get(member);
-        if (field instanceof Map) {
-            return new JsonObject((Map) field);
+    @Specialization
+    public JsonObject json(String jsonString, @CachedContext(HashemLanguage.class) HashemContext context) {
+        try {
+            final HashMap jsonNode = objectMapper.readValue(jsonString, HashMap.class);
+            final JsonObject jsonObject = new JsonObject(jsonNode);
+            return jsonObject;
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new HashemException(String.format("%s is not a valid json!", jsonString), this);
         }
-        if (field == null) {
-            return HashemPooch.SINGLETON;
-        }
-        return field;
     }
 
-    @ExportMessage
-    final boolean hasMembers() {
-        return !fields.isEmpty();
-    }
-
-    @ExportMessage
-    final Object getMembers(@SuppressWarnings("unused") boolean includeInternal) {
-        return fields.keySet().toArray();
-    }
-
-    @ExportMessage
-    final boolean isMemberReadable(String member) {
-        return fields.keySet().contains(member);
-    }
 }
