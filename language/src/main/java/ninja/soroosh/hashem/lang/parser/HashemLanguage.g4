@@ -231,6 +231,8 @@ factor returns [HashemExpressionNode result]
 |
     NUMERIC_LITERAL                             { $result = factory.createNumericLiteral($NUMERIC_LITERAL); }
 |
+    FLOAT_LITERAL                               { $result = factory.createFloatLiteral($FLOAT_LITERAL);}
+|
     s='('
     expr=expression
     e=')'                                       { $result = factory.createParenExpression($expr.result, $s.getStartIndex(), $e.getStopIndex() - $s.getStartIndex() + 1); }
@@ -316,4 +318,5 @@ STRING_LITERAL
 
 IDENTIFIER : LETTER (LETTER | DIGIT)*;
 NUMERIC_LITERAL : '0' | NON_ZERO_DIGIT DIGIT*;
+FLOAT_LITERAL: NUMERIC_LITERAL '.' NUMERIC_LITERAL;
 

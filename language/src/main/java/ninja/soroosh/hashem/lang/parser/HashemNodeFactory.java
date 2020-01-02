@@ -502,6 +502,20 @@ public class HashemNodeFactory {
         return result;
     }
 
+    public HashemExpressionNode createFloatLiteral(Token literalToken) {
+        HashemExpressionNode result;
+        try {
+            /* Try if the literal is small enough to fit into a long value. */
+            result = new HashemFloatLiteralNode(Float.parseFloat(literalToken.getText()));
+        } catch (NumberFormatException ex) {
+            /* Overflow of long value, so fall back to BigInteger. */
+            result = new HashemBigIntegerLiteralNode(new BigInteger(literalToken.getText()));
+        }
+        srcFromToken(result, literalToken);
+        result.addExpressionTag();
+        return result;
+    }
+
     public HashemExpressionNode createParenExpression(HashemExpressionNode expressionNode, int start, int length) {
         if (expressionNode == null) {
             return null;
