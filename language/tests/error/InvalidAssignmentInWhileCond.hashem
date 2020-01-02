@@ -2,7 +2,7 @@ bebin double(x) {
   bede 2 * x;
 }
 
-bebin main() {
+bebin azinja() {
   ta (double(2) = 4) bood {
     42;
   }

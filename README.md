@@ -1,16 +1,20 @@
 # Mr. Hashemi Language
 
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmr-hashemi%2Fmr-hashemi.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmr-hashemi%2Fmr-hashemi?ref=badge_shield)  [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=mr-hashemi_mr-hashemi&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=mr-hashemi_mr-hashemi) [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=mr-hashemi_mr-hashemi&metric=coverage)](https://sonarcloud.io/dashboard?id=mr-hashemi_mr-hashemi)
+
 Other languages are just too difficult. Ask Mr. Hashemi to do the job right for you!
 
-![alt text](hashemi-logo.jpg) 
+
+![Hashemi's Familiy](hashemi-logo.jpg) 
 
 
-Mr. Hashemi is a *National* programming language.
+
+Mr. Hashemi is a *National* programming language, a fork from [SimpleLanguage](https://github.com/graalvm/simplelanguage). 
 We hope Mr. Hashemi get enough attention to make bilions of tomans out of this project.  
 
 **example:**
 ```java
-bebin main() {
+bebin azinja() {
   i = 0;
   ta (i<1) bood {
     bechap("adad bede");
@@ -40,9 +44,9 @@ bebin derakht(n){
 ## Basic syntax:  
 ### Functions:  
 - Declare a function by keyword `bebin` before function name.  
-- Program starts from main function.  
+- Program starts from `azinja` function.  
 - to call a function simply call it.  
-in example above the functions `main` and `derakht` are defined and function `derakht` is called inside main.
+in example above the functions `azinja` and `derakht` are defined and function `derakht` is called inside `azinja`.
 
 ### Loops:  
 The usual `while (condition) {code}` loop is defined as `ta (shart) bood {code}` .  
@@ -54,9 +58,13 @@ The usual `if (condition) {code}` conditions definition is defined as `age (shar
 - Number :
 	- adad = 313;
 - Object :
-	- object = jadid();
-	- object.property1 = "some property";
-	- object.name = "name";
-	- object.age = 33;
+	- chiz = jadid();
+	- chiz.sefat1 = "hala ye chizi";
+	- chiz.esm = "mammad";
+	- chiz.sen = 33;
 ### logical operators:
 Basically like java you can find the list [here](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/opsummary.html) .
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmr-hashemi%2Fmr-hashemi.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmr-hashemi%2Fmr-hashemi?ref=badge_large)

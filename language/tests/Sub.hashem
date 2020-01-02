@@ -1,4 +1,4 @@
-bebin main() {
+bebin azinja() {
   bechap(3 - 4);
   bechap(3 - 4000000000000);
   bechap(3000000000000 - 4);

@@ -8,7 +8,7 @@ bebin loop(n) {
   bede sum;
 }  
 
-bebin main() {
+bebin azinja() {
   i = 0;
   ta (i < 20) bood{
     loop(10000);

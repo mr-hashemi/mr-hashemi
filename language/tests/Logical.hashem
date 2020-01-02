@@ -1,4 +1,4 @@
-bebin main() {
+bebin azinja() {
   t = 10 == 10; // true
   f = 10 != 10; // false
   bechap(left(f) && right(f));

@@ -1,4 +1,4 @@
-bebin main() {
+bebin azinja() {
   eval("hashemi", "bebin foo() { bede 14 + 2; }");
   bechap(foo());
 }
