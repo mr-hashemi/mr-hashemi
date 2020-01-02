@@ -60,7 +60,7 @@ import ninja.soroosh.hashem.lang.runtime.HashemPooch;
  * conversion methods for some types. In this class, we only cover types where the automatically
  * generated ones would not be sufficient.
  */
-@TypeSystem({long.class, boolean.class})
+@TypeSystem({float.class, long.class, boolean.class})
 public abstract class HashemTypes {
 
     /**

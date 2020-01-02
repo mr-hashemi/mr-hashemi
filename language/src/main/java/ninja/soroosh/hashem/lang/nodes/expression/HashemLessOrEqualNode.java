@@ -63,6 +63,11 @@ public abstract class HashemLessOrEqualNode extends HashemBinaryNode {
     }
 
     @Specialization
+    protected boolean lessOrEqual(float left, float right) {
+        return left <= right;
+    }
+
+    @Specialization
     @TruffleBoundary
     protected boolean lessOrEqual(HashemBigNumber left, HashemBigNumber right) {
         return left.compareTo(right) <= 0;
