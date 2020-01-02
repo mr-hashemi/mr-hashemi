@@ -71,7 +71,6 @@ public abstract class HashemJsonBuiltin extends HashemBuiltinNode {
             final JsonObject jsonObject = new JsonObject(jsonNode);
             return jsonObject;
         } catch (IOException e) {
-            e.printStackTrace();
             throw new HashemException(String.format("%s is not a valid json!", jsonString), this);
         }
     }
