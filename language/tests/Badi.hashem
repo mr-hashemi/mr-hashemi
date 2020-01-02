@@ -1,0 +1,10 @@
+bebin azinja() {
+  i = 0;  
+  ta (i < 10) bood {
+    i = i + 1 ;
+    age (i % 2 == 0) bood {
+      badi;
+    }  
+    bechap(i);
+  }
+}  
