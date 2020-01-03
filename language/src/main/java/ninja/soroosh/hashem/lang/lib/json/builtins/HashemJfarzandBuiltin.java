@@ -58,14 +58,14 @@ import java.util.HashMap;
 /**
  * Builtin function that can turn a json string into Mr. Hashemi's objects.
  */
-@NodeInfo(shortName = "json")
-public abstract class HashemJsonBuiltin extends HashemBuiltinNode {
+@NodeInfo(shortName = "jfarzand")
+public abstract class HashemJfarzandBuiltin extends HashemBuiltinNode {
 
     // TODO: move to the context to boost speed
     private ObjectMapper objectMapper = new ObjectMapper();
 
     @Specialization
-    public JsonObject json(String jsonString, @CachedContext(HashemLanguage.class) HashemContext context) {
+    public JsonObject jfarzand(String jsonString, @CachedContext(HashemLanguage.class) HashemContext context) {
         try {
             final HashMap jsonNode = objectMapper.readValue(jsonString, HashMap.class);
             final JsonObject jsonObject = new JsonObject(jsonNode);

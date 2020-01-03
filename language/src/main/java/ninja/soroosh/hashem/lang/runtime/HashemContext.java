@@ -58,7 +58,7 @@ import com.oracle.truffle.api.object.Shape;
 import com.oracle.truffle.api.source.Source;
 import ninja.soroosh.hashem.lang.HashemLanguage;
 import ninja.soroosh.hashem.lang.builtins.*;
-import ninja.soroosh.hashem.lang.lib.json.builtins.HashemJsonBuiltinFactory;
+import ninja.soroosh.hashem.lang.lib.json.builtins.HashemJfarzandBuiltinFactory;
 import ninja.soroosh.hashem.lang.nodes.HashemExpressionNode;
 import ninja.soroosh.hashem.lang.nodes.HashemRootNode;
 import ninja.soroosh.hashem.lang.nodes.local.HashemReadArgumentNode;
@@ -167,7 +167,7 @@ public final class HashemContext {
         installBuiltin(HashemStartBuiltinFactory.getInstance());
         installBuiltin(HashemStopBuiltinFactory.getInstance());
         installBuiltin(HashemAddHandlerBuiltinFactory.getInstance());
-        installBuiltin(HashemJsonBuiltinFactory.getInstance());
+        installBuiltin(HashemJfarzandBuiltinFactory.getInstance());
     }
 
     public void installBuiltin(NodeFactory<? extends HashemBuiltinNode> factory) {
