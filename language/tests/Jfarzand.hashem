@@ -1,5 +1,5 @@
 bebin azinja() {
-    object = json("""{"name":"Mr.Hashemi"}""");
+    object = jfarzand("""{"name":"Mr.Hashemi"}""");
     bechap(object.name);
     bechap(object.x);
 }
