@@ -1,0 +1,8 @@
+bebin azinja() {
+  bechap(3 % 4);
+  bechap(3.0 % 4);
+  bechap(3 % 4.0);
+  bechap(3.0 % 4.0);
+  bechap(300000000000000000 % 300000000000000000);
+  bechap(100 % "A");
+}

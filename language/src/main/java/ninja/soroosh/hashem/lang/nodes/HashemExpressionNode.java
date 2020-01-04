@@ -110,6 +110,10 @@ public abstract class HashemExpressionNode extends HashemStatementNode {
         return HashemTypesGen.expectLong(executeGeneric(frame));
     }
 
+    public float executeFloat(VirtualFrame frame) throws UnexpectedResultException {
+        return HashemTypesGen.expectFloat(executeGeneric(frame));
+    }
+
     public boolean executeBoolean(VirtualFrame frame) throws UnexpectedResultException {
         return HashemTypesGen.expectBoolean(executeGeneric(frame));
     }

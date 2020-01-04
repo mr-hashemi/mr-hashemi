@@ -1,0 +1,6 @@
+3
+3.0
+3.0
+3.0
+0
+Type error at Mod.hashem line 7 col 10: operation "%" not defined for Number 100, String "A"

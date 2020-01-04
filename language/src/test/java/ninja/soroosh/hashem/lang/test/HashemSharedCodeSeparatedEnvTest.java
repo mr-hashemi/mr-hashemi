@@ -82,7 +82,7 @@ public class HashemSharedCodeSeparatedEnvTest {
         os1 = new ByteArrayOutputStream();
         os2 = new ByteArrayOutputStream();
 
-        int instances = HashemLanguage.counter;
+        int instances = HashemLanguage.counter.get();
         // @formatter:off
         e1 = Context.newBuilder("hashemi").engine(engine).out(os1).allowPolyglotAccess(PolyglotAccess.ALL).build();
         e1.getPolyglotBindings().putMember("extra", 1);
@@ -90,7 +90,7 @@ public class HashemSharedCodeSeparatedEnvTest {
         e2.getPolyglotBindings().putMember("extra", 2);
         e1.initialize("hashemi");
         e2.initialize("hashemi");
-        assertEquals("One SLLanguage instance created", instances + 1, HashemLanguage.counter);
+        assertEquals("One HashemLanguage instance created", instances + 1, HashemLanguage.counter.get());
     }
 
     @After

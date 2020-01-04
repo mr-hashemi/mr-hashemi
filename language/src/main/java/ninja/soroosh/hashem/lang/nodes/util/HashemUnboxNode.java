@@ -82,6 +82,11 @@ public abstract class HashemUnboxNode extends HashemExpressionNode {
     }
 
     @Specialization
+    protected static float fromFloat(float value) {
+        return value;
+    }
+
+    @Specialization
     protected static HashemBigNumber fromBigNumber(HashemBigNumber value) {
         return value;
     }
@@ -101,8 +106,8 @@ public abstract class HashemUnboxNode extends HashemExpressionNode {
         try {
             if (interop.fitsInLong(value)) {
                 return interop.asLong(value);
-            } else if (interop.fitsInDouble(value)) {
-                return (long) interop.asDouble(value);
+            } else if (interop.fitsInFloat(value)) {
+                return interop.asFloat(value);
             } else if (interop.isString(value)) {
                 return interop.asString(value);
             } else if (interop.isBoolean(value)) {

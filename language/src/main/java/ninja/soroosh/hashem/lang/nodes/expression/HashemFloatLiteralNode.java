@@ -40,40 +40,35 @@
  *  * SOFTWARE.
  *
  */
-package ninja.soroosh.hashem.lang.lib.json.builtins;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.oracle.truffle.api.dsl.CachedContext;
-import com.oracle.truffle.api.dsl.Specialization;
+package ninja.soroosh.hashem.lang.nodes.expression;
+
+import com.oracle.truffle.api.frame.VirtualFrame;
 import com.oracle.truffle.api.nodes.NodeInfo;
-import ninja.soroosh.hashem.lang.HashemException;
-import ninja.soroosh.hashem.lang.HashemLanguage;
-import ninja.soroosh.hashem.lang.builtins.HashemBuiltinNode;
-import ninja.soroosh.hashem.lang.lib.json.JsonObject;
-import ninja.soroosh.hashem.lang.runtime.HashemContext;
-
-import java.io.IOException;
-import java.util.HashMap;
+import com.oracle.truffle.api.nodes.UnexpectedResultException;
+import ninja.soroosh.hashem.lang.nodes.HashemExpressionNode;
 
 /**
- * Builtin function that can turn a json string into Mr. Hashemi's objects.
+ * Constant literal for a primitive {@code float} value. The unboxed value can be returned when the
+ * parent expects a float value and calls {@link HashemFloatLiteralNode#executeFloat}. In the generic case,
+ * the primitive value is automatically boxed by Java.
  */
-@NodeInfo(shortName = "json")
-public abstract class HashemJsonBuiltin extends HashemBuiltinNode {
+@NodeInfo(shortName = "const")
+public final class HashemFloatLiteralNode extends HashemExpressionNode {
 
-    // TODO: move to the context to boost speed
-    private ObjectMapper objectMapper = new ObjectMapper();
+    private final float value;
 
-    @Specialization
-    public JsonObject json(String jsonString, @CachedContext(HashemLanguage.class) HashemContext context) {
-        try {
-            final HashMap jsonNode = objectMapper.readValue(jsonString, HashMap.class);
-            final JsonObject jsonObject = new JsonObject(jsonNode);
-            return jsonObject;
-        } catch (IOException e) {
-            e.printStackTrace();
-            throw new HashemException(String.format("%s is not a valid json!", jsonString), this);
-        }
+    public HashemFloatLiteralNode(float value) {
+        this.value = value;
     }
 
+    @Override
+    public float executeFloat(VirtualFrame frame) throws UnexpectedResultException {
+        return value;
+    }
+
+    @Override
+    public Object executeGeneric(VirtualFrame frame) {
+        return value;
+    }
 }

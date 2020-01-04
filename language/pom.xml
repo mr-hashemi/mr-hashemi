@@ -121,7 +121,7 @@
                         <include>**/*TestSuite.java</include>
                         <include>**/*Test.java</include>
                     </includes>
-                    <argLine>-Dgraalvm.locatorDisabled=true ${test.argLine}</argLine>
+                    <argLine>${argLine} -Dgraalvm.locatorDisabled=true ${test.argLine}</argLine>
                 </configuration>
             </plugin>
             <plugin>
