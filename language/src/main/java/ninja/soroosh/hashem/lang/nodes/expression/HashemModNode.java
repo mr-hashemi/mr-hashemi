@@ -59,8 +59,23 @@ public abstract class HashemModNode extends HashemBinaryNode {
 
     @Specialization(rewriteOn = ArithmeticException.class)
     protected long mod(long left, long right) {
-        long result = left % right;
-        return result;
+        return left % right;
+    }
+
+    @Specialization(rewriteOn = ArithmeticException.class)
+    protected float mod(float left, float right) {
+        return left % right;
+    }
+
+    @Specialization(rewriteOn = ArithmeticException.class)
+    protected float mod(long left, float right) {
+        return left % right;
+
+    }
+
+    @Specialization(rewriteOn = ArithmeticException.class)
+    protected float mod(float left, long right) {
+        return left % right;
     }
 
     @Specialization

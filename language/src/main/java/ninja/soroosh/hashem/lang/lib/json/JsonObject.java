@@ -1,6 +1,6 @@
 /*
  *
- *  * Copyright (c) 2012, 2018, Oracle and/or its affiliates. All rights reserved.
+ *  * Copyright (c) 2012, 2018, mr-hashemi. All rights reserved.
  *  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *  *
  *  * The Universal Permissive License (UPL), Version 1.0
@@ -41,40 +41,50 @@
  *
  */
 
-package ninja.soroosh.hashem.lang.nodes.expression;
+package ninja.soroosh.hashem.lang.lib.json;
 
-import com.oracle.truffle.api.CompilerDirectives.TruffleBoundary;
-import com.oracle.truffle.api.dsl.Fallback;
-import com.oracle.truffle.api.dsl.Specialization;
-import com.oracle.truffle.api.nodes.NodeInfo;
-import ninja.soroosh.hashem.lang.HashemException;
-import ninja.soroosh.hashem.lang.nodes.HashemBinaryNode;
-import ninja.soroosh.hashem.lang.runtime.HashemBigNumber;
+import com.oracle.truffle.api.interop.InteropLibrary;
+import com.oracle.truffle.api.interop.TruffleObject;
+import com.oracle.truffle.api.library.ExportLibrary;
+import com.oracle.truffle.api.library.ExportMessage;
+import ninja.soroosh.hashem.lang.runtime.HashemPooch;
 
-/**
- * This class is similar to the {@link HashemLessThanNode}.
- */
-@NodeInfo(shortName = "<=")
-public abstract class HashemLessOrEqualNode extends HashemBinaryNode {
 
-    @Specialization
-    protected boolean lessOrEqual(long left, long right) {
-        return left <= right;
+import java.util.Map;
+
+@ExportLibrary(InteropLibrary.class)
+@SuppressWarnings("static-method")
+public class JsonObject implements TruffleObject {
+    private Map<String, Object> fields;
+
+    public JsonObject(Map map) {
+        this.fields = map;
     }
 
-    @Specialization
-    protected boolean lessOrEqual(float left, float right) {
-        return left <= right;
+    @ExportMessage
+    final Object readMember(@SuppressWarnings("unused") String member) {
+        final Object field = fields.get(member);
+        if (field instanceof Map) {
+            return new JsonObject((Map) field);
+        }
+        if (field == null) {
+            return HashemPooch.SINGLETON;
+        }
+        return field;
     }
 
-    @Specialization
-    @TruffleBoundary
-    protected boolean lessOrEqual(HashemBigNumber left, HashemBigNumber right) {
-        return left.compareTo(right) <= 0;
+    @ExportMessage
+    final boolean hasMembers() {
+        return !fields.isEmpty();
     }
 
-    @Fallback
-    protected Object typeError(Object left, Object right) {
-        throw HashemException.typeError(this, left, right);
+    @ExportMessage
+    final Object getMembers(@SuppressWarnings("unused") boolean includeInternal) {
+        return fields.keySet().toArray();
+    }
+
+    @ExportMessage
+    final boolean isMemberReadable(String member) {
+        return fields.keySet().contains(member);
     }
 }

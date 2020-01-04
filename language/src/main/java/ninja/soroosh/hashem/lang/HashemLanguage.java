@@ -50,6 +50,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import com.oracle.truffle.api.CallTarget;
 import com.oracle.truffle.api.CompilerDirectives;
@@ -81,15 +82,15 @@ import ninja.soroosh.hashem.lang.runtime.HashemPooch;
 
 @TruffleLanguage.Registration(id = HashemLanguage.ID, name = "Hashemi", defaultMimeType = HashemLanguage.MIME_TYPE, characterMimeTypes = HashemLanguage.MIME_TYPE, contextPolicy = ContextPolicy.SHARED, fileTypeDetectors = HashemFileDetector.class)
 @ProvidedTags({StandardTags.CallTag.class, StandardTags.StatementTag.class, StandardTags.RootTag.class, StandardTags.RootBodyTag.class, StandardTags.ExpressionTag.class,
-                DebuggerTags.AlwaysHalt.class})
+        DebuggerTags.AlwaysHalt.class})
 public final class HashemLanguage extends TruffleLanguage<HashemContext> {
-    public static volatile int counter;
+    public static final AtomicInteger counter = new AtomicInteger();
 
     public static final String ID = "hashemi";
     public static final String MIME_TYPE = "application/x-hashem";
 
     public HashemLanguage() {
-        counter++;
+        counter.incrementAndGet();
     }
 
     @Override
@@ -276,7 +277,7 @@ public final class HashemLanguage extends TruffleLanguage<HashemContext> {
                         }
                         Object functionObject = findFunctionObject();
                         Scope vscope = Scope.newBuilder(nextScope.getName(), nextScope.getVariables(frame)).node(nextScope.getNode()).arguments(nextScope.getArguments(frame)).rootInstance(
-                                        functionObject).build();
+                                functionObject).build();
                         previousScope = nextScope;
                         nextScope = null;
                         return vscope;

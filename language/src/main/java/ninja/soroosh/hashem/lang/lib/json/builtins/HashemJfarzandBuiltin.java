@@ -1,6 +1,6 @@
 /*
  *
- *  * Copyright (c) 2012, 2018, Oracle and/or its affiliates. All rights reserved.
+ *  * Copyright (c) 2012, 2018, mr-hashemi. All rights reserved.
  *  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *  *
  *  * The Universal Permissive License (UPL), Version 1.0
@@ -40,41 +40,39 @@
  *  * SOFTWARE.
  *
  */
+package ninja.soroosh.hashem.lang.lib.json.builtins;
 
-package ninja.soroosh.hashem.lang.nodes.expression;
-
-import com.oracle.truffle.api.CompilerDirectives.TruffleBoundary;
-import com.oracle.truffle.api.dsl.Fallback;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.oracle.truffle.api.dsl.CachedContext;
 import com.oracle.truffle.api.dsl.Specialization;
 import com.oracle.truffle.api.nodes.NodeInfo;
 import ninja.soroosh.hashem.lang.HashemException;
-import ninja.soroosh.hashem.lang.nodes.HashemBinaryNode;
-import ninja.soroosh.hashem.lang.runtime.HashemBigNumber;
+import ninja.soroosh.hashem.lang.HashemLanguage;
+import ninja.soroosh.hashem.lang.builtins.HashemBuiltinNode;
+import ninja.soroosh.hashem.lang.lib.json.JsonObject;
+import ninja.soroosh.hashem.lang.runtime.HashemContext;
+
+import java.io.IOException;
+import java.util.HashMap;
 
 /**
- * This class is similar to the {@link HashemLessThanNode}.
+ * Builtin function that can turn a json string into Mr. Hashemi's objects.
  */
-@NodeInfo(shortName = "<=")
-public abstract class HashemLessOrEqualNode extends HashemBinaryNode {
+@NodeInfo(shortName = "jfarzand")
+public abstract class HashemJfarzandBuiltin extends HashemBuiltinNode {
+
+    // TODO: move to the context to boost speed
+    private ObjectMapper objectMapper = new ObjectMapper();
 
     @Specialization
-    protected boolean lessOrEqual(long left, long right) {
-        return left <= right;
+    public JsonObject jfarzand(String jsonString, @CachedContext(HashemLanguage.class) HashemContext context) {
+        try {
+            final HashMap jsonNode = objectMapper.readValue(jsonString, HashMap.class);
+            final JsonObject jsonObject = new JsonObject(jsonNode);
+            return jsonObject;
+        } catch (IOException e) {
+            throw new HashemException(String.format("%s is not a valid json!", jsonString), this);
+        }
     }
 
-    @Specialization
-    protected boolean lessOrEqual(float left, float right) {
-        return left <= right;
-    }
-
-    @Specialization
-    @TruffleBoundary
-    protected boolean lessOrEqual(HashemBigNumber left, HashemBigNumber right) {
-        return left.compareTo(right) <= 0;
-    }
-
-    @Fallback
-    protected Object typeError(Object left, Object right) {
-        throw HashemException.typeError(this, left, right);
-    }
 }

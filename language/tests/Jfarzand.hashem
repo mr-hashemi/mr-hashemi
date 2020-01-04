@@ -1,0 +1,5 @@
+bebin azinja() {
+    object = jfarzand("""{"name":"Mr.Hashemi"}""");
+    bechap(object.name);
+    bechap(object.x);
+}

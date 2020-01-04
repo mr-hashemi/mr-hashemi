@@ -73,8 +73,8 @@ public abstract class HashemReadPropertyNode extends HashemExpressionNode {
 
     @Specialization(guards = "arrays.hasArrayElements(receiver)", limit = "LIBRARY_LIMIT")
     protected Object writeArray(Object receiver, Object index,
-                    @CachedLibrary("receiver") InteropLibrary arrays,
-                    @CachedLibrary("index") InteropLibrary numbers) {
+                                @CachedLibrary("receiver") InteropLibrary arrays,
+                                @CachedLibrary("index") InteropLibrary numbers) {
         try {
             return arrays.readArrayElement(receiver, numbers.asLong(index));
         } catch (UnsupportedMessageException | InvalidArrayIndexException e) {
@@ -85,12 +85,12 @@ public abstract class HashemReadPropertyNode extends HashemExpressionNode {
 
     @Specialization(guards = "objects.hasMembers(receiver)", limit = "LIBRARY_LIMIT")
     protected Object writeObject(Object receiver, Object name,
-                    @CachedLibrary("receiver") InteropLibrary objects,
-                    @Cached HashemToMemberNode asMember) {
+                                 @CachedLibrary("receiver") InteropLibrary objects,
+                                 @Cached HashemToMemberNode asMember) {
         try {
             return objects.readMember(receiver, asMember.execute(name));
         } catch (UnsupportedMessageException | UnknownIdentifierException e) {
-            // read was not successful. InHashemiwe only have basic support for errors.
+            // read was not successful. In Hashemi we only have basic support for errors.
             throw HashemUndefinedNameException.undefinedProperty(this, name);
         }
     }

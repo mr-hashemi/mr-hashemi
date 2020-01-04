@@ -231,6 +231,8 @@ factor returns [HashemExpressionNode result]
 |
     NUMERIC_LITERAL                             { $result = factory.createNumericLiteral($NUMERIC_LITERAL); }
 |
+    FLOAT_LITERAL                               { $result = factory.createFloatLiteral($FLOAT_LITERAL);}
+|
     s='('
     expr=expression
     e=')'                                       { $result = factory.createParenExpression($expr.result, $s.getStartIndex(), $e.getStopIndex() - $s.getStartIndex() + 1); }
@@ -298,9 +300,23 @@ fragment HEX_DIGIT : [0-9] | [a-f] | [A-F];
 fragment OCT_DIGIT : [0-7];
 fragment BINARY_DIGIT : '0' | '1';
 fragment TAB : '\t';
-fragment STRING_CHAR : ~('"' | '\\' | '\r' | '\n');
+fragment STRING_CHAR : ~('\r' | '\n');
+
+
+
+UNTERMINATED_STRING_LITERAL
+  : '"' (~["\\\r\n] | '\\' (. | EOF))*
+  ;
+
+STRING_LITERAL
+  : '"""' .*? '"""'
+  {setText(getText().substring(2, getText().length()-2));}
+  |
+  UNTERMINATED_STRING_LITERAL '"'
+  ;
+
 
 IDENTIFIER : LETTER (LETTER | DIGIT)*;
-STRING_LITERAL : '"' STRING_CHAR* '"';
 NUMERIC_LITERAL : '0' | NON_ZERO_DIGIT DIGIT*;
+FLOAT_LITERAL: NUMERIC_LITERAL '.' NUMERIC_LITERAL;
 
