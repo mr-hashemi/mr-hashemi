@@ -48,8 +48,10 @@ import com.oracle.truffle.api.CompilerDirectives.TruffleBoundary;
 import com.oracle.truffle.api.interop.InteropLibrary;
 import com.oracle.truffle.api.interop.TruffleObject;
 import com.oracle.truffle.api.library.ExportLibrary;
+import com.oracle.truffle.api.library.ExportMessage;
 import com.sun.net.httpserver.HttpServer;
 import ninja.soroosh.hashem.lang.HashemLanguage;
+import org.graalvm.polyglot.HostAccess;
 import org.graalvm.polyglot.Value;
 import org.graalvm.polyglot.proxy.ProxyObject;
 
@@ -58,7 +60,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 
 @ExportLibrary(InteropLibrary.class)
-public final class HashemWebServer implements TruffleObject, ProxyObject {
+public final class HashemWebServer implements TruffleObject {
     private final HttpServer server;
     private final ExecutorService executorService;
 
@@ -86,7 +88,7 @@ public final class HashemWebServer implements TruffleObject, ProxyObject {
     @Override
     @TruffleBoundary
     public String toString() {
-        return server.toString();
+        return "HashemWebServer";
     }
 
     @Override
@@ -100,38 +102,46 @@ public final class HashemWebServer implements TruffleObject, ProxyObject {
         return server.hashCode();
     }
 
-    @TruffleBoundary
-    public void start() {
+    @HostAccess.Export
+//    @TruffleBoundary
+    public String start() {
         server.start();
+        return "";
     }
 
+    @HostAccess.Export
+    public String x = "s";
+
+
+    @HostAccess.Export
     @TruffleBoundary
     public void stop() {
         server.stop(5);
         executorService.shutdown();
     }
 
-    @Override
-    public Object getMember(String key) {
+    @ExportMessage
+    public Object readMember(String key) {
         Runnable start = server::start;
         if (key.equals("start")) {
-            return start;
+            return this.start();
         }
         return null;
     }
 
-    @Override
-    public Object getMemberKeys() {
+    @ExportMessage
+    public Object getMembers(boolean includeInternal) {
         return new String[]{"start"};
     }
 
-    @Override
-    public boolean hasMember(String key) {
-        return false;
+    @ExportMessage
+    public boolean hasMembers() {
+        return true;
     }
 
-    @Override
-    public void putMember(String key, Value value) {
-
+    @ExportMessage
+    final boolean isMemberReadable(String member) {
+        return true;
     }
+
 }

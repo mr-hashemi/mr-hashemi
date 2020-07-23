@@ -77,8 +77,7 @@ public class HashemWebServerTest {
         context.eval("hashemi",
                 "bebin server() {\n" +
                         "  server1 = webserver(9091);" +
-                        "  addHandler(server1,x);" +
-                        "  start(server1);" +
+                        " server1.start();" +
                         "}\n" +
                         "bebin x() {" +
                         "bechap(called);" +
@@ -107,21 +106,14 @@ public class HashemWebServerTest {
 
     @Test
     public void factorialOf3() throws Exception {
-        context = Context.newBuilder().allowCreateThread(true).allowAllAccess(true).out(System.out).build().create();
-        ObjectMapper mapper = new ObjectMapper();
-        final HashMap jsonNode = mapper.readValue("{\"person\":{\"name\":\"soroosh\"}}", JsonMap.class);
+        context = Context.newBuilder().allowCreateThread(true).allowAllAccess(true).out(System.out).build();
 
 
         // @formatter:off
         context.eval("hashemi",
-                "bebin server(request) {\n" +
-                        "  bechap(\"req is \"+ request.get(\"person\"));" +
+                "bebin server() {\n" +
                         "  server1 = webserver(9091);" +
-//                        "  server2 = webserver(9092);" +
-                        "  start(server1);" +
-//                        "  start(server2);" +
-                        "  addHandler(server1,x);" +
-                        " start(server1); " +
+                        "  server1.start();" +
                         "}\n" +
                         "bebin x() {" +
                         "bechap(called);" +
@@ -130,7 +122,7 @@ public class HashemWebServerTest {
         // @formatter:on
 
         server = context.getBindings("hashemi").getMember("server");
-        System.out.println(server.execute(jsonNode));
+        System.out.println(server.execute());
 
         context.close();
     }

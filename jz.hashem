@@ -1,0 +1,23 @@
+bebin main() {
+	line="=================================================================================";
+	printStuff = "x |	1	2	3	4	5	6	7	8	9	";
+	bechap(printStuff);
+	bechap(line);
+	c=0;
+	ta (c<200) bood {
+        i = 1;
+        ta (i < 10) bood {
+            printStuff = i + " |	";
+            j = 1;
+            ta (j < 10) bood {
+                haseleZarb = i * j;
+                printStuff = printStuff + haseleZarb + "	";
+                j = j + 1;
+            }
+            i = i + 1;
+            bechap(printStuff + "|");
+            bechap(line);
+        }
+        c = c+1;
+    }
+}

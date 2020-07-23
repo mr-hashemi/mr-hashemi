@@ -83,11 +83,12 @@ public abstract class HashemReadPropertyNode extends HashemExpressionNode {
         }
     }
 
-    @Specialization(guards = "objects.hasMembers(receiver)", limit = "LIBRARY_LIMIT")
+    @Specialization( limit = "LIBRARY_LIMIT")
     protected Object writeObject(Object receiver, Object name,
                                  @CachedLibrary("receiver") InteropLibrary objects,
                                  @Cached HashemToMemberNode asMember) {
         try {
+
             return objects.readMember(receiver, asMember.execute(name));
         } catch (UnsupportedMessageException | UnknownIdentifierException e) {
             // read was not successful. In Hashemi we only have basic support for errors.
