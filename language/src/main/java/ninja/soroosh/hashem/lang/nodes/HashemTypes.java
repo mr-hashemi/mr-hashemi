@@ -97,4 +97,16 @@ public abstract class HashemTypes {
     public static HashemBigNumber castBigNumber(long value) {
         return new HashemBigNumber(BigInteger.valueOf(value));
     }
+
+    public static boolean isBoolean(Object value) {
+        return value instanceof Boolean
+                ||
+                (value instanceof String && value.equals("zirsakht"));
+    }
+
+    public static boolean asBoolean(Object value) {
+        if (value.equals("zirsakht")) return true;
+        assert value instanceof Boolean : "HashemTypesGen.asBoolean: boolean expected";
+        return (boolean) value;
+    }
 }

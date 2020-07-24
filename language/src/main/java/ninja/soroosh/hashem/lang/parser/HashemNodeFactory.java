@@ -248,11 +248,11 @@ public class HashemNodeFactory {
     /**
      * Returns an {@link HashemTaNode} for the given parameters.
      *
-     * @param whileToken The token containing the while node's info
+     * @param whileToken    The token containing the while node's info
      * @param conditionNode The conditional node for this while loop
-     * @param bodyNode The body of the while loop
+     * @param bodyNode      The body of the while loop
      * @return A SLWhileNode built using the given parameters. null if either conditionNode or
-     *         bodyNode is null.
+     * bodyNode is null.
      */
     public HashemStatementNode createWhile(Token whileToken, HashemExpressionNode conditionNode, HashemStatementNode bodyNode) {
         if (conditionNode == null || bodyNode == null) {
@@ -270,12 +270,12 @@ public class HashemNodeFactory {
     /**
      * Returns an {@link HashemAgeNode} for the given parameters.
      *
-     * @param ifToken The token containing the if node's info
+     * @param ifToken       The token containing the if node's info
      * @param conditionNode The condition node of this if statement
-     * @param thenPartNode The then part of the if
-     * @param elsePartNode The else part of the if (null if no else part)
+     * @param thenPartNode  The then part of the if
+     * @param elsePartNode  The else part of the if (null if no else part)
      * @return An SLIfNode for the given parameters. null if either conditionNode or thenPartNode is
-     *         null.
+     * null.
      */
     public HashemStatementNode createIf(Token ifToken, HashemExpressionNode conditionNode, HashemStatementNode thenPartNode, HashemStatementNode elsePartNode) {
         if (conditionNode == null || thenPartNode == null) {
@@ -293,7 +293,7 @@ public class HashemNodeFactory {
     /**
      * Returns an {@link HashemBedeNode} for the given parameters.
      *
-     * @param t The token containing the return node's info
+     * @param t         The token containing the return node's info
      * @param valueNode The value of the return (null if not returning a value)
      * @return An SLReturnNode for the given parameters.
      */
@@ -309,11 +309,11 @@ public class HashemNodeFactory {
      * Returns the corresponding subclass of {@link HashemExpressionNode} for binary expressions. </br>
      * These nodes are currently not instrumented.
      *
-     * @param opToken The operator of the binary expression
-     * @param leftNode The left node of the expression
+     * @param opToken   The operator of the binary expression
+     * @param leftNode  The left node of the expression
      * @param rightNode The right node of the expression
      * @return A subclass of SLExpressionNode using the given parameters based on the given opToken.
-     *         null if either leftNode or rightNode is null.
+     * null if either leftNode or rightNode is null.
      */
     public HashemExpressionNode createBinary(Token opToken, HashemExpressionNode leftNode, HashemExpressionNode rightNode) {
         if (leftNode == null || rightNode == null) {
@@ -334,7 +334,7 @@ public class HashemNodeFactory {
                 result = HashemDivNodeGen.create(leftUnboxed, rightUnboxed);
                 break;
             case "%":
-                result = HashemModNodeGen.create(leftUnboxed,rightUnboxed);
+                result = HashemModNodeGen.create(leftUnboxed, rightUnboxed);
                 break;
             case "-":
                 result = HashemSubNodeGen.create(leftUnboxed, rightUnboxed);
@@ -378,11 +378,11 @@ public class HashemNodeFactory {
     /**
      * Returns an {@link HashemInvokeNode} for the given parameters.
      *
-     * @param functionNode The function being called
+     * @param functionNode   The function being called
      * @param parameterNodes The parameters of the function call
-     * @param finalToken A token used to determine the end of the sourceSelection for this call
+     * @param finalToken     A token used to determine the end of the sourceSelection for this call
      * @return An SLInvokeNode for the given parameters. null if functionNode or any of the
-     *         parameterNodes are null.
+     * parameterNodes are null.
      */
     public HashemExpressionNode createCall(HashemExpressionNode functionNode, List<HashemExpressionNode> parameterNodes, Token finalToken) {
         if (functionNode == null || containsNull(parameterNodes)) {
@@ -402,7 +402,7 @@ public class HashemNodeFactory {
     /**
      * Returns an {@link HashemWriteLocalVariableNode} for the given parameters.
      *
-     * @param nameNode The name of the variable being assigned
+     * @param nameNode  The name of the variable being assigned
      * @param valueNode The value to be assigned
      * @return An SLExpressionNode for the given parameters. null if nameNode or valueNode is null.
      */
@@ -413,8 +413,8 @@ public class HashemNodeFactory {
     /**
      * Returns an {@link HashemWriteLocalVariableNode} for the given parameters.
      *
-     * @param nameNode The name of the variable being assigned
-     * @param valueNode The value to be assigned
+     * @param nameNode      The name of the variable being assigned
+     * @param valueNode     The value to be assigned
      * @param argumentIndex null or index of the argument the assignment is assigning
      * @return An SLExpressionNode for the given parameters. null if nameNode or valueNode is null.
      */
@@ -425,9 +425,9 @@ public class HashemNodeFactory {
 
         String name = ((HashemStringLiteralNode) nameNode).executeGeneric(null);
         FrameSlot frameSlot = frameDescriptor.findOrAddFrameSlot(
-                        name,
-                        argumentIndex,
-                        FrameSlotKind.Illegal);
+                name,
+                argumentIndex,
+                FrameSlotKind.Illegal);
         lexicalScope.locals.put(name, frameSlot);
         final HashemExpressionNode result = HashemWriteLocalVariableNodeGen.create(valueNode, frameSlot);
 
@@ -448,11 +448,11 @@ public class HashemNodeFactory {
      *
      * @param nameNode The name of the variable/function being read
      * @return either:
-     *         <ul>
-     *         <li>A SLReadLocalVariableNode representing the local variable being read.</li>
-     *         <li>A SLFunctionLiteralNode representing the function definition.</li>
-     *         <li>null if nameNode is null.</li>
-     *         </ul>
+     * <ul>
+     * <li>A SLReadLocalVariableNode representing the local variable being read.</li>
+     * <li>A SLFunctionLiteralNode representing the function definition.</li>
+     * <li>null if nameNode is null.</li>
+     * </ul>
      */
     public HashemExpressionNode createRead(HashemExpressionNode nameNode) {
         if (nameNode == null) {
@@ -502,6 +502,20 @@ public class HashemNodeFactory {
         return result;
     }
 
+    public HashemExpressionNode createBooleanLiteral(Token literalToken) {
+        HashemExpressionNode result;
+        /* Try if the literal is small enough to fit into a long value. */
+        System.out.println(literalToken);
+        if (literalToken.getText().equals("zirsakht")) {
+            result = new HashemBooleanLiteralNode(true);
+        } else {
+            result = new HashemBooleanLiteralNode(false);
+        }
+        srcFromToken(result, literalToken);
+        result.addExpressionTag();
+        return result;
+    }
+
     public HashemExpressionNode createFloatLiteral(Token literalToken) {
         HashemExpressionNode result;
         try {
@@ -530,9 +544,9 @@ public class HashemNodeFactory {
      * Returns an {@link HashemReadPropertyNode} for the given parameters.
      *
      * @param receiverNode The receiver of the property access
-     * @param nameNode The name of the property being accessed
+     * @param nameNode     The name of the property being accessed
      * @return An SLExpressionNode for the given parameters. null if receiverNode or nameNode is
-     *         null.
+     * null.
      */
     public HashemExpressionNode createReadProperty(HashemExpressionNode receiverNode, HashemExpressionNode nameNode) {
         if (receiverNode == null || nameNode == null) {
@@ -553,10 +567,10 @@ public class HashemNodeFactory {
      * Returns an {@link HashemWritePropertyNode} for the given parameters.
      *
      * @param receiverNode The receiver object of the property assignment
-     * @param nameNode The name of the property being assigned
-     * @param valueNode The value to be assigned
+     * @param nameNode     The name of the property being assigned
+     * @param valueNode    The value to be assigned
      * @return An SLExpressionNode for the given parameters. null if receiverNode, nameNode or
-     *         valueNode is null.
+     * valueNode is null.
      */
     public HashemExpressionNode createWriteProperty(HashemExpressionNode receiverNode, HashemExpressionNode nameNode, HashemExpressionNode valueNode) {
         if (receiverNode == null || nameNode == null || valueNode == null) {

@@ -229,6 +229,8 @@ factor returns [HashemExpressionNode result]
 |
     STRING_LITERAL                              { $result = factory.createStringLiteral($STRING_LITERAL, true); }
 |
+    BOOLEAN_LITERAL                             { $result = factory.createBooleanLiteral($BOOLEAN_LITERAL); }
+|
     NUMERIC_LITERAL                             { $result = factory.createNumericLiteral($NUMERIC_LITERAL); }
 |
     FLOAT_LITERAL                               { $result = factory.createFloatLiteral($FLOAT_LITERAL);}
@@ -303,7 +305,7 @@ fragment TAB : '\t';
 fragment STRING_CHAR : ~('\r' | '\n');
 
 
-
+BOOLEAN_LITERAL: 'zirsakht' | 'false';
 UNTERMINATED_STRING_LITERAL
   : '"' (~["\\\r\n] | '\\' (. | EOF))*
   ;
