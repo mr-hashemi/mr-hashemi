@@ -37,7 +37,7 @@ majmoo = 0;
   
 ta (adadeMan<11) bood {  
     majmoo = majmoo + adadeMan;  
-    adadeMan +=1;  
+    adadeMan = adadeMan + 1;  
 }  
   
 bechap("majmoo barabar ast ba: "+majmoo);  
