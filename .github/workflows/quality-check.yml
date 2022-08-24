@@ -9,7 +9,7 @@ jobs:
   quality-check:
     runs-on: ubuntu-latest
     steps:
-    - uses: DeLaGuardo/setup-graalvm@2.0
+    - uses: DeLaGuardo/setup-graalvm@5.0
       with:
         graalvm-version: '19.3.0.java8'
 
