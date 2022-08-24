@@ -13,10 +13,10 @@ jobs:
       with:
         graalvm-version: '19.3.0.java8'
 
-    - run: gu install native-image
-    - uses: actions/checkout@v1
-    - name: Sonar
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SONAR_LOGIN: ${{ secrets.SONAR_LOGIN }}
-      run: mvn verify sonar:sonar
+#     - run: gu install native-image
+#     - uses: actions/checkout@v1
+#     - name: Sonar
+#       env:
+#         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#         SONAR_LOGIN: ${{ secrets.SONAR_LOGIN }}
+#       run: mvn verify sonar:sonar
